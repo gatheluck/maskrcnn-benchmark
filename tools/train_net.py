@@ -44,7 +44,7 @@ def train(cfg, local_rank, distributed):
     arguments = {}
     arguments["iteration"] = 0
 
-    output_dir = cfg.OUTPUT_DIR
+    output_dir = cfg.OUTPUT_DIR # CHANGE
 
     save_to_disk = get_rank() == 0
     checkpointer = DetectronCheckpointer(
@@ -117,6 +117,7 @@ def main():
         help="path to config file",
         type=str,
     )
+    parser.add_argument("-l", "--log_dir", type=str, required=True, help="log directory")
     parser.add_argument("--local_rank", type=int, default=0)
     parser.add_argument(
         "--skip-test",
@@ -147,7 +148,7 @@ def main():
     cfg.merge_from_list(args.opts)
     cfg.freeze()
 
-    output_dir = cfg.OUTPUT_DIR
+    output_dir = args.log_dir # cfg.OUTPUT_DIR
     if output_dir:
         mkdir(output_dir)
 
