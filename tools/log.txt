@@ -1,0 +1,1258 @@
+2019-03-11 02:54:30,986 maskrcnn_benchmark INFO: Using 1 GPUs
+2019-03-11 02:54:30,987 maskrcnn_benchmark INFO: Namespace(config_file='/home/gatheluck/Codes/maskrcnn/configs/e2e_faster_rcnn_R_50_C4_1x.yaml', distributed=False, local_rank=0, opts=[], skip_test=False)
+2019-03-11 02:54:30,987 maskrcnn_benchmark INFO: Collecting env info (might take some time)
+2019-03-11 02:54:40,561 maskrcnn_benchmark INFO: 
+PyTorch version: 1.0.1.post2
+Is debug build: No
+CUDA used to build PyTorch: 9.0.176
+
+OS: Ubuntu 16.04.6 LTS
+GCC version: (Ubuntu 5.5.0-12ubuntu1~16.04) 5.5.0 20171010
+CMake version: version 3.5.1
+
+Python version: 3.6
+Is CUDA available: Yes
+CUDA runtime version: 9.0.176
+GPU models and configuration: GPU 0: GeForce GTX 1080 Ti
+Nvidia driver version: 384.130
+cuDNN version: Probably one of the following:
+/usr/local/MATLAB/R2018b/bin/glnxa64/libcudnn.so.7.1.2
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.4.2
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn_static.a
+/usr/local/cudnn/v7.0/lib64/libcudnn.so.7.0.5
+/usr/local/cudnn/v7.0/lib64/libcudnn_static.a
+
+Versions of relevant libraries:
+[pip] Could not collect
+[conda] pytorch                   1.0.1           py3.6_cuda9.0.176_cudnn7.4.2_2    pytorch
+[conda] torchvision               0.2.2                      py_3    pytorch
+        Pillow (5.0.0)
+2019-03-11 02:54:40,561 maskrcnn_benchmark INFO: Loaded configuration file /home/gatheluck/Codes/maskrcnn/configs/e2e_faster_rcnn_R_50_C4_1x.yaml
+2019-03-11 02:54:40,562 maskrcnn_benchmark INFO: 
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "catalog://ImageNetPretrained/MSRA/R-50"
+  RPN:
+    PRE_NMS_TOP_N_TEST: 6000
+    POST_NMS_TOP_N_TEST: 1000
+DATASETS:
+  TRAIN: ("voc_2007_train", "voc_2007_val")
+  TEST: ("voc_2007_test",)
+SOLVER:
+  BASE_LR: 0.01
+  WEIGHT_DECAY: 0.0001
+  STEPS: (120000, 160000)
+  MAX_ITER: 180000
+  IMS_PER_BATCH: 8
+
+2019-03-11 02:54:40,563 maskrcnn_benchmark INFO: Running with config:
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  NUM_WORKERS: 4
+  SIZE_DIVISIBILITY: 0
+DATASETS:
+  TEST: ('voc_2007_test',)
+  TRAIN: ('voc_2007_train', 'voc_2007_val')
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  PIXEL_MEAN: [102.9801, 115.9465, 122.7717]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  TO_BGR255: True
+MODEL:
+  BACKBONE:
+    CONV_BODY: R-50-C4
+    FREEZE_CONV_BODY_AT: 2
+    USE_GN: False
+  CLS_AGNOSTIC_BBOX_REG: False
+  DEVICE: cuda
+  FBNET:
+    ARCH: default
+    ARCH_DEF: 
+    BN_TYPE: bn
+    DET_HEAD_BLOCKS: []
+    DET_HEAD_LAST_SCALE: 1.0
+    DET_HEAD_STRIDE: 0
+    DW_CONV_SKIP_BN: True
+    DW_CONV_SKIP_RELU: True
+    KPTS_HEAD_BLOCKS: []
+    KPTS_HEAD_LAST_SCALE: 0.0
+    KPTS_HEAD_STRIDE: 0
+    MASK_HEAD_BLOCKS: []
+    MASK_HEAD_LAST_SCALE: 0.0
+    MASK_HEAD_STRIDE: 0
+    RPN_BN_TYPE: 
+    RPN_HEAD_BLOCKS: 0
+    SCALE_FACTOR: 1.0
+    WIDTH_DIVISOR: 1
+  FPN:
+    USE_GN: False
+    USE_RELU: False
+  GROUP_NORM:
+    DIM_PER_GP: -1
+    EPSILON: 1e-05
+    NUM_GROUPS: 32
+  KEYPOINT_ON: False
+  MASK_ON: False
+  META_ARCHITECTURE: GeneralizedRCNN
+  RESNETS:
+    BACKBONE_OUT_CHANNELS: 1024
+    NUM_GROUPS: 1
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_FUNC: StemWithFixedBatchNorm
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    TRANS_FUNC: BottleneckWithFixedBatchNorm
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    ANCHOR_SIZES: (32, 64, 128, 256, 512)
+    ANCHOR_STRIDES: (8, 16, 32, 64, 128)
+    ASPECT_RATIOS: (0.5, 1.0, 2.0)
+    BBOX_REG_BETA: 0.11
+    BBOX_REG_WEIGHT: 4.0
+    BG_IOU_THRESHOLD: 0.4
+    FG_IOU_THRESHOLD: 0.5
+    INFERENCE_TH: 0.05
+    LOSS_ALPHA: 0.25
+    LOSS_GAMMA: 2.0
+    NMS_TH: 0.4
+    NUM_CLASSES: 81
+    NUM_CONVS: 4
+    OCTAVE: 2.0
+    PRE_NMS_TOP_N: 1000
+    PRIOR_PROB: 0.01
+    SCALES_PER_OCTAVE: 3
+    STRADDLE_THRESH: 0
+    USE_C5: True
+  RETINANET_ON: False
+  ROI_BOX_HEAD:
+    CONV_HEAD_DIM: 256
+    DILATION: 1
+    FEATURE_EXTRACTOR: ResNet50Conv5ROIFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    NUM_CLASSES: 81
+    NUM_STACKED_CONVS: 4
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    PREDICTOR: FastRCNNPredictor
+    USE_GN: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 512
+    BBOX_REG_WEIGHTS: (10.0, 10.0, 5.0, 5.0)
+    BG_IOU_THRESHOLD: 0.5
+    DETECTIONS_PER_IMG: 100
+    FG_IOU_THRESHOLD: 0.5
+    NMS: 0.5
+    POSITIVE_FRACTION: 0.25
+    SCORE_THRESH: 0.05
+    USE_FPN: False
+  ROI_KEYPOINT_HEAD:
+    CONV_LAYERS: (512, 512, 512, 512, 512, 512, 512, 512)
+    FEATURE_EXTRACTOR: KeypointRCNNFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    NUM_CLASSES: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    PREDICTOR: KeypointRCNNPredictor
+    RESOLUTION: 14
+    SHARE_BOX_FEATURE_EXTRACTOR: True
+  ROI_MASK_HEAD:
+    CONV_LAYERS: (256, 256, 256, 256)
+    DILATION: 1
+    FEATURE_EXTRACTOR: ResNet50Conv5ROIFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    POSTPROCESS_MASKS: False
+    POSTPROCESS_MASKS_THRESHOLD: 0.5
+    PREDICTOR: MaskRCNNC4Predictor
+    RESOLUTION: 14
+    SHARE_BOX_FEATURE_EXTRACTOR: True
+    USE_GN: False
+  RPN:
+    ANCHOR_SIZES: (32, 64, 128, 256, 512)
+    ANCHOR_STRIDE: (16,)
+    ASPECT_RATIOS: (0.5, 1.0, 2.0)
+    BATCH_SIZE_PER_IMAGE: 256
+    BG_IOU_THRESHOLD: 0.3
+    FG_IOU_THRESHOLD: 0.7
+    FPN_POST_NMS_TOP_N_TEST: 2000
+    FPN_POST_NMS_TOP_N_TRAIN: 2000
+    MIN_SIZE: 0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOP_N_TEST: 1000
+    POST_NMS_TOP_N_TRAIN: 2000
+    PRE_NMS_TOP_N_TEST: 6000
+    PRE_NMS_TOP_N_TRAIN: 12000
+    RPN_HEAD: SingleConvRPNHead
+    STRADDLE_THRESH: 0
+    USE_FPN: False
+  RPN_ONLY: False
+  WEIGHT: catalog://ImageNetPretrained/MSRA/R-50
+OUTPUT_DIR: .
+PATHS_CATALOG: /home/gatheluck/Codes/maskrcnn/maskrcnn_benchmark/config/paths_catalog.py
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 2
+  CHECKPOINT_PERIOD: 2500
+  GAMMA: 0.1
+  IMS_PER_BATCH: 8
+  MAX_ITER: 180000
+  MOMENTUM: 0.9
+  STEPS: (120000, 160000)
+  WARMUP_FACTOR: 0.3333333333333333
+  WARMUP_ITERS: 500
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0
+TEST:
+  DETECTIONS_PER_IMG: 100
+  EXPECTED_RESULTS: []
+  EXPECTED_RESULTS_SIGMA_TOL: 4
+  IMS_PER_BATCH: 8
+2019-03-11 02:54:43,000 maskrcnn_benchmark.utils.checkpoint INFO: Loading checkpoint from catalog://ImageNetPretrained/MSRA/R-50
+2019-03-11 02:54:43,001 maskrcnn_benchmark.utils.checkpoint INFO: catalog://ImageNetPretrained/MSRA/R-50 points to https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl
+2019-03-11 02:54:54,613 maskrcnn_benchmark.utils.checkpoint INFO: url https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl cached in /home/gatheluck/.torch/models/R-50.pkl
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: Remapping C2 weights
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: conv1_b              mapped name: conv1.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: conv1_w              mapped name: conv1.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: fc1000_b             mapped name: fc1000.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: fc1000_w             mapped name: fc1000.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_b     mapped name: layer1.0.downsample.0.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_bn_b  mapped name: layer1.0.downsample.1.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_bn_s  mapped name: layer1.0.downsample.1.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_w     mapped name: layer1.0.downsample.0.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_b    mapped name: layer1.0.conv1.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_bn_b mapped name: layer1.0.bn1.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_bn_s mapped name: layer1.0.bn1.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_w    mapped name: layer1.0.conv1.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_b    mapped name: layer1.0.conv2.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_bn_b mapped name: layer1.0.bn2.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_bn_s mapped name: layer1.0.bn2.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_w    mapped name: layer1.0.conv2.weight
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_b    mapped name: layer1.0.conv3.bias
+2019-03-11 02:54:54,693 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_bn_b mapped name: layer1.0.bn3.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_bn_s mapped name: layer1.0.bn3.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_w    mapped name: layer1.0.conv3.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_b    mapped name: layer1.1.conv1.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_bn_b mapped name: layer1.1.bn1.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_bn_s mapped name: layer1.1.bn1.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_w    mapped name: layer1.1.conv1.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_b    mapped name: layer1.1.conv2.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_bn_b mapped name: layer1.1.bn2.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_bn_s mapped name: layer1.1.bn2.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_w    mapped name: layer1.1.conv2.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_b    mapped name: layer1.1.conv3.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_bn_b mapped name: layer1.1.bn3.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_bn_s mapped name: layer1.1.bn3.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_w    mapped name: layer1.1.conv3.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_b    mapped name: layer1.2.conv1.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_bn_b mapped name: layer1.2.bn1.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_bn_s mapped name: layer1.2.bn1.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_w    mapped name: layer1.2.conv1.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_b    mapped name: layer1.2.conv2.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_bn_b mapped name: layer1.2.bn2.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_bn_s mapped name: layer1.2.bn2.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_w    mapped name: layer1.2.conv2.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_b    mapped name: layer1.2.conv3.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_bn_b mapped name: layer1.2.bn3.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_bn_s mapped name: layer1.2.bn3.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_w    mapped name: layer1.2.conv3.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_b     mapped name: layer2.0.downsample.0.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_bn_b  mapped name: layer2.0.downsample.1.bias
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_bn_s  mapped name: layer2.0.downsample.1.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_w     mapped name: layer2.0.downsample.0.weight
+2019-03-11 02:54:54,694 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_b    mapped name: layer2.0.conv1.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_bn_b mapped name: layer2.0.bn1.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_bn_s mapped name: layer2.0.bn1.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_w    mapped name: layer2.0.conv1.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_b    mapped name: layer2.0.conv2.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_bn_b mapped name: layer2.0.bn2.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_bn_s mapped name: layer2.0.bn2.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_w    mapped name: layer2.0.conv2.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_b    mapped name: layer2.0.conv3.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_bn_b mapped name: layer2.0.bn3.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_bn_s mapped name: layer2.0.bn3.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_w    mapped name: layer2.0.conv3.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_b    mapped name: layer2.1.conv1.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_bn_b mapped name: layer2.1.bn1.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_bn_s mapped name: layer2.1.bn1.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_w    mapped name: layer2.1.conv1.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_b    mapped name: layer2.1.conv2.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_bn_b mapped name: layer2.1.bn2.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_bn_s mapped name: layer2.1.bn2.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_w    mapped name: layer2.1.conv2.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_b    mapped name: layer2.1.conv3.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_bn_b mapped name: layer2.1.bn3.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_bn_s mapped name: layer2.1.bn3.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_w    mapped name: layer2.1.conv3.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_b    mapped name: layer2.2.conv1.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_bn_b mapped name: layer2.2.bn1.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_bn_s mapped name: layer2.2.bn1.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_w    mapped name: layer2.2.conv1.weight
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_b    mapped name: layer2.2.conv2.bias
+2019-03-11 02:54:54,695 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_bn_b mapped name: layer2.2.bn2.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_bn_s mapped name: layer2.2.bn2.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_w    mapped name: layer2.2.conv2.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_b    mapped name: layer2.2.conv3.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_bn_b mapped name: layer2.2.bn3.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_bn_s mapped name: layer2.2.bn3.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_w    mapped name: layer2.2.conv3.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_b    mapped name: layer2.3.conv1.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_bn_b mapped name: layer2.3.bn1.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_bn_s mapped name: layer2.3.bn1.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_w    mapped name: layer2.3.conv1.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_b    mapped name: layer2.3.conv2.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_bn_b mapped name: layer2.3.bn2.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_bn_s mapped name: layer2.3.bn2.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_w    mapped name: layer2.3.conv2.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_b    mapped name: layer2.3.conv3.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_bn_b mapped name: layer2.3.bn3.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_bn_s mapped name: layer2.3.bn3.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_w    mapped name: layer2.3.conv3.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_b     mapped name: layer3.0.downsample.0.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_bn_b  mapped name: layer3.0.downsample.1.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_bn_s  mapped name: layer3.0.downsample.1.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_w     mapped name: layer3.0.downsample.0.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_b    mapped name: layer3.0.conv1.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_bn_b mapped name: layer3.0.bn1.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_bn_s mapped name: layer3.0.bn1.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_w    mapped name: layer3.0.conv1.weight
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_b    mapped name: layer3.0.conv2.bias
+2019-03-11 02:54:54,696 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_bn_b mapped name: layer3.0.bn2.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_bn_s mapped name: layer3.0.bn2.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_w    mapped name: layer3.0.conv2.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_b    mapped name: layer3.0.conv3.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_bn_b mapped name: layer3.0.bn3.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_bn_s mapped name: layer3.0.bn3.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_w    mapped name: layer3.0.conv3.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_b    mapped name: layer3.1.conv1.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_bn_b mapped name: layer3.1.bn1.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_bn_s mapped name: layer3.1.bn1.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_w    mapped name: layer3.1.conv1.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_b    mapped name: layer3.1.conv2.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_bn_b mapped name: layer3.1.bn2.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_bn_s mapped name: layer3.1.bn2.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_w    mapped name: layer3.1.conv2.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_b    mapped name: layer3.1.conv3.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_bn_b mapped name: layer3.1.bn3.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_bn_s mapped name: layer3.1.bn3.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_w    mapped name: layer3.1.conv3.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_b    mapped name: layer3.2.conv1.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_bn_b mapped name: layer3.2.bn1.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_bn_s mapped name: layer3.2.bn1.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_w    mapped name: layer3.2.conv1.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_b    mapped name: layer3.2.conv2.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_bn_b mapped name: layer3.2.bn2.bias
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_bn_s mapped name: layer3.2.bn2.weight
+2019-03-11 02:54:54,697 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_w    mapped name: layer3.2.conv2.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_b    mapped name: layer3.2.conv3.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_bn_b mapped name: layer3.2.bn3.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_bn_s mapped name: layer3.2.bn3.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_w    mapped name: layer3.2.conv3.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_b    mapped name: layer3.3.conv1.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_bn_b mapped name: layer3.3.bn1.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_bn_s mapped name: layer3.3.bn1.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_w    mapped name: layer3.3.conv1.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_b    mapped name: layer3.3.conv2.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_bn_b mapped name: layer3.3.bn2.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_bn_s mapped name: layer3.3.bn2.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_w    mapped name: layer3.3.conv2.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_b    mapped name: layer3.3.conv3.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_bn_b mapped name: layer3.3.bn3.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_bn_s mapped name: layer3.3.bn3.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_w    mapped name: layer3.3.conv3.weight
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_b    mapped name: layer3.4.conv1.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_bn_b mapped name: layer3.4.bn1.bias
+2019-03-11 02:54:54,698 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_bn_s mapped name: layer3.4.bn1.weight
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_w    mapped name: layer3.4.conv1.weight
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_b    mapped name: layer3.4.conv2.bias
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_bn_b mapped name: layer3.4.bn2.bias
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_bn_s mapped name: layer3.4.bn2.weight
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_w    mapped name: layer3.4.conv2.weight
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_b    mapped name: layer3.4.conv3.bias
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_bn_b mapped name: layer3.4.bn3.bias
+2019-03-11 02:54:54,730 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_bn_s mapped name: layer3.4.bn3.weight
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_w    mapped name: layer3.4.conv3.weight
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_b    mapped name: layer3.5.conv1.bias
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_bn_b mapped name: layer3.5.bn1.bias
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_bn_s mapped name: layer3.5.bn1.weight
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_w    mapped name: layer3.5.conv1.weight
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_b    mapped name: layer3.5.conv2.bias
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_bn_b mapped name: layer3.5.bn2.bias
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_bn_s mapped name: layer3.5.bn2.weight
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_w    mapped name: layer3.5.conv2.weight
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_b    mapped name: layer3.5.conv3.bias
+2019-03-11 02:54:54,731 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_bn_b mapped name: layer3.5.bn3.bias
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_bn_s mapped name: layer3.5.bn3.weight
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_w    mapped name: layer3.5.conv3.weight
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_b     mapped name: layer4.0.downsample.0.bias
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_bn_b  mapped name: layer4.0.downsample.1.bias
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_bn_s  mapped name: layer4.0.downsample.1.weight
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_w     mapped name: layer4.0.downsample.0.weight
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_b    mapped name: layer4.0.conv1.bias
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_bn_b mapped name: layer4.0.bn1.bias
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_bn_s mapped name: layer4.0.bn1.weight
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_w    mapped name: layer4.0.conv1.weight
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_b    mapped name: layer4.0.conv2.bias
+2019-03-11 02:54:54,732 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_bn_b mapped name: layer4.0.bn2.bias
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_bn_s mapped name: layer4.0.bn2.weight
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_w    mapped name: layer4.0.conv2.weight
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_b    mapped name: layer4.0.conv3.bias
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_bn_b mapped name: layer4.0.bn3.bias
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_bn_s mapped name: layer4.0.bn3.weight
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_w    mapped name: layer4.0.conv3.weight
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_b    mapped name: layer4.1.conv1.bias
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_bn_b mapped name: layer4.1.bn1.bias
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_bn_s mapped name: layer4.1.bn1.weight
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_w    mapped name: layer4.1.conv1.weight
+2019-03-11 02:54:54,733 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_b    mapped name: layer4.1.conv2.bias
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_bn_b mapped name: layer4.1.bn2.bias
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_bn_s mapped name: layer4.1.bn2.weight
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_w    mapped name: layer4.1.conv2.weight
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_b    mapped name: layer4.1.conv3.bias
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_bn_b mapped name: layer4.1.bn3.bias
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_bn_s mapped name: layer4.1.bn3.weight
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_w    mapped name: layer4.1.conv3.weight
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_b    mapped name: layer4.2.conv1.bias
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_bn_b mapped name: layer4.2.bn1.bias
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_bn_s mapped name: layer4.2.bn1.weight
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_w    mapped name: layer4.2.conv1.weight
+2019-03-11 02:54:54,734 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_b    mapped name: layer4.2.conv2.bias
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_bn_b mapped name: layer4.2.bn2.bias
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_bn_s mapped name: layer4.2.bn2.weight
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_w    mapped name: layer4.2.conv2.weight
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_b    mapped name: layer4.2.conv3.bias
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_bn_b mapped name: layer4.2.bn3.bias
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_bn_s mapped name: layer4.2.bn3.weight
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_w    mapped name: layer4.2.conv3.weight
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res_conv1_bn_b       mapped name: bn1.bias
+2019-03-11 02:54:54,735 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res_conv1_bn_s       mapped name: bn1.weight
+2019-03-11 02:54:54,749 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn1.bias                                         loaded from layer1.0.bn1.bias            of shape (64,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn1.weight                                       loaded from layer1.0.bn1.weight          of shape (64,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn2.bias                                         loaded from layer1.0.bn2.bias            of shape (64,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn2.weight                                       loaded from layer1.0.bn2.weight          of shape (64,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn3.bias                                         loaded from layer1.0.bn3.bias            of shape (256,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn3.weight                                       loaded from layer1.0.bn3.weight          of shape (256,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.conv1.weight                                     loaded from layer1.0.conv1.weight        of shape (64, 64, 1, 1)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.conv2.weight                                     loaded from layer1.0.conv2.weight        of shape (64, 64, 3, 3)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.conv3.weight                                     loaded from layer1.0.conv3.weight        of shape (256, 64, 1, 1)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.downsample.0.weight                              loaded from layer1.0.downsample.0.weight of shape (256, 64, 1, 1)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.downsample.1.bias                                loaded from layer1.0.downsample.1.bias   of shape (256,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.downsample.1.weight                              loaded from layer1.0.downsample.1.weight of shape (256,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn1.bias                                         loaded from layer1.1.bn1.bias            of shape (64,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn1.weight                                       loaded from layer1.1.bn1.weight          of shape (64,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn2.bias                                         loaded from layer1.1.bn2.bias            of shape (64,)
+2019-03-11 02:54:54,750 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn2.weight                                       loaded from layer1.1.bn2.weight          of shape (64,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn3.bias                                         loaded from layer1.1.bn3.bias            of shape (256,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn3.weight                                       loaded from layer1.1.bn3.weight          of shape (256,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.conv1.weight                                     loaded from layer1.1.conv1.weight        of shape (64, 256, 1, 1)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.conv2.weight                                     loaded from layer1.1.conv2.weight        of shape (64, 64, 3, 3)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.conv3.weight                                     loaded from layer1.1.conv3.weight        of shape (256, 64, 1, 1)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn1.bias                                         loaded from layer1.2.bn1.bias            of shape (64,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn1.weight                                       loaded from layer1.2.bn1.weight          of shape (64,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn2.bias                                         loaded from layer1.2.bn2.bias            of shape (64,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn2.weight                                       loaded from layer1.2.bn2.weight          of shape (64,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn3.bias                                         loaded from layer1.2.bn3.bias            of shape (256,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn3.weight                                       loaded from layer1.2.bn3.weight          of shape (256,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.conv1.weight                                     loaded from layer1.2.conv1.weight        of shape (64, 256, 1, 1)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.conv2.weight                                     loaded from layer1.2.conv2.weight        of shape (64, 64, 3, 3)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.conv3.weight                                     loaded from layer1.2.conv3.weight        of shape (256, 64, 1, 1)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn1.bias                                         loaded from layer2.0.bn1.bias            of shape (128,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn1.weight                                       loaded from layer2.0.bn1.weight          of shape (128,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn2.bias                                         loaded from layer2.0.bn2.bias            of shape (128,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn2.weight                                       loaded from layer2.0.bn2.weight          of shape (128,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn3.bias                                         loaded from layer2.0.bn3.bias            of shape (512,)
+2019-03-11 02:54:54,751 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn3.weight                                       loaded from layer2.0.bn3.weight          of shape (512,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.conv1.weight                                     loaded from layer2.0.conv1.weight        of shape (128, 256, 1, 1)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.conv2.weight                                     loaded from layer2.0.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.conv3.weight                                     loaded from layer2.0.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.downsample.0.weight                              loaded from layer2.0.downsample.0.weight of shape (512, 256, 1, 1)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.downsample.1.bias                                loaded from layer2.0.downsample.1.bias   of shape (512,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.downsample.1.weight                              loaded from layer2.0.downsample.1.weight of shape (512,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn1.bias                                         loaded from layer2.1.bn1.bias            of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn1.weight                                       loaded from layer2.1.bn1.weight          of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn2.bias                                         loaded from layer2.1.bn2.bias            of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn2.weight                                       loaded from layer2.1.bn2.weight          of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn3.bias                                         loaded from layer2.1.bn3.bias            of shape (512,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn3.weight                                       loaded from layer2.1.bn3.weight          of shape (512,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.conv1.weight                                     loaded from layer2.1.conv1.weight        of shape (128, 512, 1, 1)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.conv2.weight                                     loaded from layer2.1.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.conv3.weight                                     loaded from layer2.1.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn1.bias                                         loaded from layer2.2.bn1.bias            of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn1.weight                                       loaded from layer2.2.bn1.weight          of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn2.bias                                         loaded from layer2.2.bn2.bias            of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn2.weight                                       loaded from layer2.2.bn2.weight          of shape (128,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn3.bias                                         loaded from layer2.2.bn3.bias            of shape (512,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn3.weight                                       loaded from layer2.2.bn3.weight          of shape (512,)
+2019-03-11 02:54:54,752 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.conv1.weight                                     loaded from layer2.2.conv1.weight        of shape (128, 512, 1, 1)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.conv2.weight                                     loaded from layer2.2.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.conv3.weight                                     loaded from layer2.2.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn1.bias                                         loaded from layer2.3.bn1.bias            of shape (128,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn1.weight                                       loaded from layer2.3.bn1.weight          of shape (128,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn2.bias                                         loaded from layer2.3.bn2.bias            of shape (128,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn2.weight                                       loaded from layer2.3.bn2.weight          of shape (128,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn3.bias                                         loaded from layer2.3.bn3.bias            of shape (512,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn3.weight                                       loaded from layer2.3.bn3.weight          of shape (512,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.conv1.weight                                     loaded from layer2.3.conv1.weight        of shape (128, 512, 1, 1)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.conv2.weight                                     loaded from layer2.3.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.conv3.weight                                     loaded from layer2.3.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn1.bias                                         loaded from layer3.0.bn1.bias            of shape (256,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn1.weight                                       loaded from layer3.0.bn1.weight          of shape (256,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn2.bias                                         loaded from layer3.0.bn2.bias            of shape (256,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn2.weight                                       loaded from layer3.0.bn2.weight          of shape (256,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn3.bias                                         loaded from layer3.0.bn3.bias            of shape (1024,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn3.weight                                       loaded from layer3.0.bn3.weight          of shape (1024,)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.conv1.weight                                     loaded from layer3.0.conv1.weight        of shape (256, 512, 1, 1)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.conv2.weight                                     loaded from layer3.0.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.conv3.weight                                     loaded from layer3.0.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.downsample.0.weight                              loaded from layer3.0.downsample.0.weight of shape (1024, 512, 1, 1)
+2019-03-11 02:54:54,753 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.downsample.1.bias                                loaded from layer3.0.downsample.1.bias   of shape (1024,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.downsample.1.weight                              loaded from layer3.0.downsample.1.weight of shape (1024,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn1.bias                                         loaded from layer3.1.bn1.bias            of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn1.weight                                       loaded from layer3.1.bn1.weight          of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn2.bias                                         loaded from layer3.1.bn2.bias            of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn2.weight                                       loaded from layer3.1.bn2.weight          of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn3.bias                                         loaded from layer3.1.bn3.bias            of shape (1024,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn3.weight                                       loaded from layer3.1.bn3.weight          of shape (1024,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.conv1.weight                                     loaded from layer3.1.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.conv2.weight                                     loaded from layer3.1.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.conv3.weight                                     loaded from layer3.1.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn1.bias                                         loaded from layer3.2.bn1.bias            of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn1.weight                                       loaded from layer3.2.bn1.weight          of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn2.bias                                         loaded from layer3.2.bn2.bias            of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn2.weight                                       loaded from layer3.2.bn2.weight          of shape (256,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn3.bias                                         loaded from layer3.2.bn3.bias            of shape (1024,)
+2019-03-11 02:54:54,754 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn3.weight                                       loaded from layer3.2.bn3.weight          of shape (1024,)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.conv1.weight                                     loaded from layer3.2.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.conv2.weight                                     loaded from layer3.2.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.conv3.weight                                     loaded from layer3.2.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn1.bias                                         loaded from layer3.3.bn1.bias            of shape (256,)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn1.weight                                       loaded from layer3.3.bn1.weight          of shape (256,)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn2.bias                                         loaded from layer3.3.bn2.bias            of shape (256,)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn2.weight                                       loaded from layer3.3.bn2.weight          of shape (256,)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn3.bias                                         loaded from layer3.3.bn3.bias            of shape (1024,)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn3.weight                                       loaded from layer3.3.bn3.weight          of shape (1024,)
+2019-03-11 02:54:54,779 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.conv1.weight                                     loaded from layer3.3.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.conv2.weight                                     loaded from layer3.3.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.conv3.weight                                     loaded from layer3.3.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn1.bias                                         loaded from layer3.4.bn1.bias            of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn1.weight                                       loaded from layer3.4.bn1.weight          of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn2.bias                                         loaded from layer3.4.bn2.bias            of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn2.weight                                       loaded from layer3.4.bn2.weight          of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn3.bias                                         loaded from layer3.4.bn3.bias            of shape (1024,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn3.weight                                       loaded from layer3.4.bn3.weight          of shape (1024,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.conv1.weight                                     loaded from layer3.4.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.conv2.weight                                     loaded from layer3.4.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.conv3.weight                                     loaded from layer3.4.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn1.bias                                         loaded from layer3.5.bn1.bias            of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn1.weight                                       loaded from layer3.5.bn1.weight          of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn2.bias                                         loaded from layer3.5.bn2.bias            of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn2.weight                                       loaded from layer3.5.bn2.weight          of shape (256,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn3.bias                                         loaded from layer3.5.bn3.bias            of shape (1024,)
+2019-03-11 02:54:54,780 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn3.weight                                       loaded from layer3.5.bn3.weight          of shape (1024,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.conv1.weight                                     loaded from layer3.5.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.conv2.weight                                     loaded from layer3.5.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.conv3.weight                                     loaded from layer3.5.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.stem.bn1.bias                                             loaded from bn1.bias                     of shape (64,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.stem.bn1.weight                                           loaded from bn1.weight                   of shape (64,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.stem.conv1.weight                                         loaded from conv1.weight                 of shape (64, 3, 7, 7)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn1.bias                  loaded from layer4.0.bn1.bias            of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn1.weight                loaded from layer4.0.bn1.weight          of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn2.bias                  loaded from layer4.0.bn2.bias            of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn2.weight                loaded from layer4.0.bn2.weight          of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn3.bias                  loaded from layer4.0.bn3.bias            of shape (2048,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn3.weight                loaded from layer4.0.bn3.weight          of shape (2048,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.conv1.weight              loaded from layer4.0.conv1.weight        of shape (512, 1024, 1, 1)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.conv2.weight              loaded from layer4.0.conv2.weight        of shape (512, 512, 3, 3)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.conv3.weight              loaded from layer4.0.conv3.weight        of shape (2048, 512, 1, 1)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.downsample.0.weight       loaded from layer4.0.downsample.0.weight of shape (2048, 1024, 1, 1)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.downsample.1.bias         loaded from layer4.0.downsample.1.bias   of shape (2048,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.downsample.1.weight       loaded from layer4.0.downsample.1.weight of shape (2048,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn1.bias                  loaded from layer4.1.bn1.bias            of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn1.weight                loaded from layer4.1.bn1.weight          of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn2.bias                  loaded from layer4.1.bn2.bias            of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn2.weight                loaded from layer4.1.bn2.weight          of shape (512,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn3.bias                  loaded from layer4.1.bn3.bias            of shape (2048,)
+2019-03-11 02:54:54,781 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn3.weight                loaded from layer4.1.bn3.weight          of shape (2048,)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.conv1.weight              loaded from layer4.1.conv1.weight        of shape (512, 2048, 1, 1)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.conv2.weight              loaded from layer4.1.conv2.weight        of shape (512, 512, 3, 3)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.conv3.weight              loaded from layer4.1.conv3.weight        of shape (2048, 512, 1, 1)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn1.bias                  loaded from layer4.2.bn1.bias            of shape (512,)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn1.weight                loaded from layer4.2.bn1.weight          of shape (512,)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn2.bias                  loaded from layer4.2.bn2.bias            of shape (512,)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn2.weight                loaded from layer4.2.bn2.weight          of shape (512,)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn3.bias                  loaded from layer4.2.bn3.bias            of shape (2048,)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn3.weight                loaded from layer4.2.bn3.weight          of shape (2048,)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.conv1.weight              loaded from layer4.2.conv1.weight        of shape (512, 2048, 1, 1)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.conv2.weight              loaded from layer4.2.conv2.weight        of shape (512, 512, 3, 3)
+2019-03-11 02:54:54,782 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.conv3.weight              loaded from layer4.2.conv3.weight        of shape (2048, 512, 1, 1)
+2019-03-11 02:54:54,809 maskrcnn_benchmark.data.build WARNING: When using more than one image per GPU you may encounter an out-of-memory (OOM) error if your GPU does not have sufficient memory. If this happens, you can reduce SOLVER.IMS_PER_BATCH (for training) or TEST.IMS_PER_BATCH (for inference). For training, you must also adjust the learning rate and schedule length according to the linear scaling rule. See for example: https://github.com/facebookresearch/Detectron/blob/master/configs/getting_started/tutorial_1gpu_e2e_faster_rcnn_R-50-FPN.yaml#L14
+2019-03-11 02:55:00,880 maskrcnn_benchmark.trainer INFO: Start training
+2019-03-11 02:56:51,335 maskrcnn_benchmark INFO: Using 1 GPUs
+2019-03-11 02:56:51,336 maskrcnn_benchmark INFO: Namespace(config_file='/home/gatheluck/Codes/maskrcnn/configs/e2e_faster_rcnn_R_50_C4_1x.yaml', distributed=False, local_rank=0, opts=[], skip_test=False)
+2019-03-11 02:56:51,336 maskrcnn_benchmark INFO: Collecting env info (might take some time)
+2019-03-11 02:56:54,152 maskrcnn_benchmark INFO: 
+PyTorch version: 1.0.1.post2
+Is debug build: No
+CUDA used to build PyTorch: 9.0.176
+
+OS: Ubuntu 16.04.6 LTS
+GCC version: (Ubuntu 5.5.0-12ubuntu1~16.04) 5.5.0 20171010
+CMake version: version 3.5.1
+
+Python version: 3.6
+Is CUDA available: Yes
+CUDA runtime version: 9.0.176
+GPU models and configuration: GPU 0: GeForce GTX 1080 Ti
+Nvidia driver version: 384.130
+cuDNN version: Probably one of the following:
+/usr/local/MATLAB/R2018b/bin/glnxa64/libcudnn.so.7.1.2
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.0.5
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn.so.7.4.2
+/usr/local/cuda-9.0/targets/x86_64-linux/lib/libcudnn_static.a
+/usr/local/cudnn/v7.0/lib64/libcudnn.so.7.0.5
+/usr/local/cudnn/v7.0/lib64/libcudnn_static.a
+
+Versions of relevant libraries:
+[pip] Could not collect
+[conda] pytorch                   1.0.1           py3.6_cuda9.0.176_cudnn7.4.2_2    pytorch
+[conda] torchvision               0.2.2                      py_3    pytorch
+        Pillow (5.0.0)
+2019-03-11 02:56:54,152 maskrcnn_benchmark INFO: Loaded configuration file /home/gatheluck/Codes/maskrcnn/configs/e2e_faster_rcnn_R_50_C4_1x.yaml
+2019-03-11 02:56:54,153 maskrcnn_benchmark INFO: 
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "catalog://ImageNetPretrained/MSRA/R-50"
+  RPN:
+    PRE_NMS_TOP_N_TEST: 6000
+    POST_NMS_TOP_N_TEST: 1000
+DATASETS:
+  TRAIN: ("voc_2007_train", "voc_2007_val")
+  TEST: ("voc_2007_test",)
+SOLVER:
+  BASE_LR: 0.01
+  WEIGHT_DECAY: 0.0001
+  STEPS: (120000, 160000)
+  MAX_ITER: 180000
+  IMS_PER_BATCH: 2
+
+2019-03-11 02:56:54,154 maskrcnn_benchmark INFO: Running with config:
+DATALOADER:
+  ASPECT_RATIO_GROUPING: True
+  NUM_WORKERS: 4
+  SIZE_DIVISIBILITY: 0
+DATASETS:
+  TEST: ('voc_2007_test',)
+  TRAIN: ('voc_2007_train', 'voc_2007_val')
+INPUT:
+  MAX_SIZE_TEST: 1333
+  MAX_SIZE_TRAIN: 1333
+  MIN_SIZE_TEST: 800
+  MIN_SIZE_TRAIN: (800,)
+  PIXEL_MEAN: [102.9801, 115.9465, 122.7717]
+  PIXEL_STD: [1.0, 1.0, 1.0]
+  TO_BGR255: True
+MODEL:
+  BACKBONE:
+    CONV_BODY: R-50-C4
+    FREEZE_CONV_BODY_AT: 2
+    USE_GN: False
+  CLS_AGNOSTIC_BBOX_REG: False
+  DEVICE: cuda
+  FBNET:
+    ARCH: default
+    ARCH_DEF: 
+    BN_TYPE: bn
+    DET_HEAD_BLOCKS: []
+    DET_HEAD_LAST_SCALE: 1.0
+    DET_HEAD_STRIDE: 0
+    DW_CONV_SKIP_BN: True
+    DW_CONV_SKIP_RELU: True
+    KPTS_HEAD_BLOCKS: []
+    KPTS_HEAD_LAST_SCALE: 0.0
+    KPTS_HEAD_STRIDE: 0
+    MASK_HEAD_BLOCKS: []
+    MASK_HEAD_LAST_SCALE: 0.0
+    MASK_HEAD_STRIDE: 0
+    RPN_BN_TYPE: 
+    RPN_HEAD_BLOCKS: 0
+    SCALE_FACTOR: 1.0
+    WIDTH_DIVISOR: 1
+  FPN:
+    USE_GN: False
+    USE_RELU: False
+  GROUP_NORM:
+    DIM_PER_GP: -1
+    EPSILON: 1e-05
+    NUM_GROUPS: 32
+  KEYPOINT_ON: False
+  MASK_ON: False
+  META_ARCHITECTURE: GeneralizedRCNN
+  RESNETS:
+    BACKBONE_OUT_CHANNELS: 1024
+    NUM_GROUPS: 1
+    RES2_OUT_CHANNELS: 256
+    RES5_DILATION: 1
+    STEM_FUNC: StemWithFixedBatchNorm
+    STEM_OUT_CHANNELS: 64
+    STRIDE_IN_1X1: True
+    TRANS_FUNC: BottleneckWithFixedBatchNorm
+    WIDTH_PER_GROUP: 64
+  RETINANET:
+    ANCHOR_SIZES: (32, 64, 128, 256, 512)
+    ANCHOR_STRIDES: (8, 16, 32, 64, 128)
+    ASPECT_RATIOS: (0.5, 1.0, 2.0)
+    BBOX_REG_BETA: 0.11
+    BBOX_REG_WEIGHT: 4.0
+    BG_IOU_THRESHOLD: 0.4
+    FG_IOU_THRESHOLD: 0.5
+    INFERENCE_TH: 0.05
+    LOSS_ALPHA: 0.25
+    LOSS_GAMMA: 2.0
+    NMS_TH: 0.4
+    NUM_CLASSES: 81
+    NUM_CONVS: 4
+    OCTAVE: 2.0
+    PRE_NMS_TOP_N: 1000
+    PRIOR_PROB: 0.01
+    SCALES_PER_OCTAVE: 3
+    STRADDLE_THRESH: 0
+    USE_C5: True
+  RETINANET_ON: False
+  ROI_BOX_HEAD:
+    CONV_HEAD_DIM: 256
+    DILATION: 1
+    FEATURE_EXTRACTOR: ResNet50Conv5ROIFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    NUM_CLASSES: 81
+    NUM_STACKED_CONVS: 4
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    PREDICTOR: FastRCNNPredictor
+    USE_GN: False
+  ROI_HEADS:
+    BATCH_SIZE_PER_IMAGE: 512
+    BBOX_REG_WEIGHTS: (10.0, 10.0, 5.0, 5.0)
+    BG_IOU_THRESHOLD: 0.5
+    DETECTIONS_PER_IMG: 100
+    FG_IOU_THRESHOLD: 0.5
+    NMS: 0.5
+    POSITIVE_FRACTION: 0.25
+    SCORE_THRESH: 0.05
+    USE_FPN: False
+  ROI_KEYPOINT_HEAD:
+    CONV_LAYERS: (512, 512, 512, 512, 512, 512, 512, 512)
+    FEATURE_EXTRACTOR: KeypointRCNNFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    NUM_CLASSES: 17
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    PREDICTOR: KeypointRCNNPredictor
+    RESOLUTION: 14
+    SHARE_BOX_FEATURE_EXTRACTOR: True
+  ROI_MASK_HEAD:
+    CONV_LAYERS: (256, 256, 256, 256)
+    DILATION: 1
+    FEATURE_EXTRACTOR: ResNet50Conv5ROIFeatureExtractor
+    MLP_HEAD_DIM: 1024
+    POOLER_RESOLUTION: 14
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_SCALES: (0.0625,)
+    POSTPROCESS_MASKS: False
+    POSTPROCESS_MASKS_THRESHOLD: 0.5
+    PREDICTOR: MaskRCNNC4Predictor
+    RESOLUTION: 14
+    SHARE_BOX_FEATURE_EXTRACTOR: True
+    USE_GN: False
+  RPN:
+    ANCHOR_SIZES: (32, 64, 128, 256, 512)
+    ANCHOR_STRIDE: (16,)
+    ASPECT_RATIOS: (0.5, 1.0, 2.0)
+    BATCH_SIZE_PER_IMAGE: 256
+    BG_IOU_THRESHOLD: 0.3
+    FG_IOU_THRESHOLD: 0.7
+    FPN_POST_NMS_TOP_N_TEST: 2000
+    FPN_POST_NMS_TOP_N_TRAIN: 2000
+    MIN_SIZE: 0
+    NMS_THRESH: 0.7
+    POSITIVE_FRACTION: 0.5
+    POST_NMS_TOP_N_TEST: 1000
+    POST_NMS_TOP_N_TRAIN: 2000
+    PRE_NMS_TOP_N_TEST: 6000
+    PRE_NMS_TOP_N_TRAIN: 12000
+    RPN_HEAD: SingleConvRPNHead
+    STRADDLE_THRESH: 0
+    USE_FPN: False
+  RPN_ONLY: False
+  WEIGHT: catalog://ImageNetPretrained/MSRA/R-50
+OUTPUT_DIR: .
+PATHS_CATALOG: /home/gatheluck/Codes/maskrcnn/maskrcnn_benchmark/config/paths_catalog.py
+SOLVER:
+  BASE_LR: 0.01
+  BIAS_LR_FACTOR: 2
+  CHECKPOINT_PERIOD: 2500
+  GAMMA: 0.1
+  IMS_PER_BATCH: 2
+  MAX_ITER: 180000
+  MOMENTUM: 0.9
+  STEPS: (120000, 160000)
+  WARMUP_FACTOR: 0.3333333333333333
+  WARMUP_ITERS: 500
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0
+TEST:
+  DETECTIONS_PER_IMG: 100
+  EXPECTED_RESULTS: []
+  EXPECTED_RESULTS_SIGMA_TOL: 4
+  IMS_PER_BATCH: 8
+2019-03-11 02:56:56,146 maskrcnn_benchmark.utils.checkpoint INFO: Loading checkpoint from catalog://ImageNetPretrained/MSRA/R-50
+2019-03-11 02:56:56,146 maskrcnn_benchmark.utils.checkpoint INFO: catalog://ImageNetPretrained/MSRA/R-50 points to https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl
+2019-03-11 02:56:56,147 maskrcnn_benchmark.utils.checkpoint INFO: url https://dl.fbaipublicfiles.com/detectron/ImageNetPretrained/MSRA/R-50.pkl cached in /home/gatheluck/.torch/models/R-50.pkl
+2019-03-11 02:56:56,227 maskrcnn_benchmark.utils.c2_model_loading INFO: Remapping C2 weights
+2019-03-11 02:56:56,227 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: conv1_b              mapped name: conv1.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: conv1_w              mapped name: conv1.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: fc1000_b             mapped name: fc1000.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: fc1000_w             mapped name: fc1000.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_b     mapped name: layer1.0.downsample.0.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_bn_b  mapped name: layer1.0.downsample.1.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_bn_s  mapped name: layer1.0.downsample.1.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch1_w     mapped name: layer1.0.downsample.0.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_b    mapped name: layer1.0.conv1.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_bn_b mapped name: layer1.0.bn1.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_bn_s mapped name: layer1.0.bn1.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2a_w    mapped name: layer1.0.conv1.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_b    mapped name: layer1.0.conv2.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_bn_b mapped name: layer1.0.bn2.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_bn_s mapped name: layer1.0.bn2.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2b_w    mapped name: layer1.0.conv2.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_b    mapped name: layer1.0.conv3.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_bn_b mapped name: layer1.0.bn3.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_bn_s mapped name: layer1.0.bn3.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_0_branch2c_w    mapped name: layer1.0.conv3.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_b    mapped name: layer1.1.conv1.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_bn_b mapped name: layer1.1.bn1.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_bn_s mapped name: layer1.1.bn1.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2a_w    mapped name: layer1.1.conv1.weight
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_b    mapped name: layer1.1.conv2.bias
+2019-03-11 02:56:56,228 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_bn_b mapped name: layer1.1.bn2.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_bn_s mapped name: layer1.1.bn2.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2b_w    mapped name: layer1.1.conv2.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_b    mapped name: layer1.1.conv3.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_bn_b mapped name: layer1.1.bn3.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_bn_s mapped name: layer1.1.bn3.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_1_branch2c_w    mapped name: layer1.1.conv3.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_b    mapped name: layer1.2.conv1.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_bn_b mapped name: layer1.2.bn1.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_bn_s mapped name: layer1.2.bn1.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2a_w    mapped name: layer1.2.conv1.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_b    mapped name: layer1.2.conv2.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_bn_b mapped name: layer1.2.bn2.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_bn_s mapped name: layer1.2.bn2.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2b_w    mapped name: layer1.2.conv2.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_b    mapped name: layer1.2.conv3.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_bn_b mapped name: layer1.2.bn3.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_bn_s mapped name: layer1.2.bn3.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res2_2_branch2c_w    mapped name: layer1.2.conv3.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_b     mapped name: layer2.0.downsample.0.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_bn_b  mapped name: layer2.0.downsample.1.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_bn_s  mapped name: layer2.0.downsample.1.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch1_w     mapped name: layer2.0.downsample.0.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_b    mapped name: layer2.0.conv1.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_bn_b mapped name: layer2.0.bn1.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_bn_s mapped name: layer2.0.bn1.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2a_w    mapped name: layer2.0.conv1.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_b    mapped name: layer2.0.conv2.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_bn_b mapped name: layer2.0.bn2.bias
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_bn_s mapped name: layer2.0.bn2.weight
+2019-03-11 02:56:56,229 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2b_w    mapped name: layer2.0.conv2.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_b    mapped name: layer2.0.conv3.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_bn_b mapped name: layer2.0.bn3.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_bn_s mapped name: layer2.0.bn3.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_0_branch2c_w    mapped name: layer2.0.conv3.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_b    mapped name: layer2.1.conv1.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_bn_b mapped name: layer2.1.bn1.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_bn_s mapped name: layer2.1.bn1.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2a_w    mapped name: layer2.1.conv1.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_b    mapped name: layer2.1.conv2.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_bn_b mapped name: layer2.1.bn2.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_bn_s mapped name: layer2.1.bn2.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2b_w    mapped name: layer2.1.conv2.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_b    mapped name: layer2.1.conv3.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_bn_b mapped name: layer2.1.bn3.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_bn_s mapped name: layer2.1.bn3.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_1_branch2c_w    mapped name: layer2.1.conv3.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_b    mapped name: layer2.2.conv1.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_bn_b mapped name: layer2.2.bn1.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_bn_s mapped name: layer2.2.bn1.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2a_w    mapped name: layer2.2.conv1.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_b    mapped name: layer2.2.conv2.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_bn_b mapped name: layer2.2.bn2.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_bn_s mapped name: layer2.2.bn2.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2b_w    mapped name: layer2.2.conv2.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_b    mapped name: layer2.2.conv3.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_bn_b mapped name: layer2.2.bn3.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_bn_s mapped name: layer2.2.bn3.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_2_branch2c_w    mapped name: layer2.2.conv3.weight
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_b    mapped name: layer2.3.conv1.bias
+2019-03-11 02:56:56,230 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_bn_b mapped name: layer2.3.bn1.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_bn_s mapped name: layer2.3.bn1.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2a_w    mapped name: layer2.3.conv1.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_b    mapped name: layer2.3.conv2.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_bn_b mapped name: layer2.3.bn2.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_bn_s mapped name: layer2.3.bn2.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2b_w    mapped name: layer2.3.conv2.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_b    mapped name: layer2.3.conv3.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_bn_b mapped name: layer2.3.bn3.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_bn_s mapped name: layer2.3.bn3.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res3_3_branch2c_w    mapped name: layer2.3.conv3.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_b     mapped name: layer3.0.downsample.0.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_bn_b  mapped name: layer3.0.downsample.1.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_bn_s  mapped name: layer3.0.downsample.1.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch1_w     mapped name: layer3.0.downsample.0.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_b    mapped name: layer3.0.conv1.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_bn_b mapped name: layer3.0.bn1.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_bn_s mapped name: layer3.0.bn1.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2a_w    mapped name: layer3.0.conv1.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_b    mapped name: layer3.0.conv2.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_bn_b mapped name: layer3.0.bn2.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_bn_s mapped name: layer3.0.bn2.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2b_w    mapped name: layer3.0.conv2.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_b    mapped name: layer3.0.conv3.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_bn_b mapped name: layer3.0.bn3.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_bn_s mapped name: layer3.0.bn3.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_0_branch2c_w    mapped name: layer3.0.conv3.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_b    mapped name: layer3.1.conv1.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_bn_b mapped name: layer3.1.bn1.bias
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_bn_s mapped name: layer3.1.bn1.weight
+2019-03-11 02:56:56,231 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2a_w    mapped name: layer3.1.conv1.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_b    mapped name: layer3.1.conv2.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_bn_b mapped name: layer3.1.bn2.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_bn_s mapped name: layer3.1.bn2.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2b_w    mapped name: layer3.1.conv2.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_b    mapped name: layer3.1.conv3.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_bn_b mapped name: layer3.1.bn3.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_bn_s mapped name: layer3.1.bn3.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_1_branch2c_w    mapped name: layer3.1.conv3.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_b    mapped name: layer3.2.conv1.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_bn_b mapped name: layer3.2.bn1.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_bn_s mapped name: layer3.2.bn1.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2a_w    mapped name: layer3.2.conv1.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_b    mapped name: layer3.2.conv2.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_bn_b mapped name: layer3.2.bn2.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_bn_s mapped name: layer3.2.bn2.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2b_w    mapped name: layer3.2.conv2.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_b    mapped name: layer3.2.conv3.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_bn_b mapped name: layer3.2.bn3.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_bn_s mapped name: layer3.2.bn3.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_2_branch2c_w    mapped name: layer3.2.conv3.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_b    mapped name: layer3.3.conv1.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_bn_b mapped name: layer3.3.bn1.bias
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_bn_s mapped name: layer3.3.bn1.weight
+2019-03-11 02:56:56,232 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2a_w    mapped name: layer3.3.conv1.weight
+2019-03-11 02:56:56,268 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_b    mapped name: layer3.3.conv2.bias
+2019-03-11 02:56:56,268 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_bn_b mapped name: layer3.3.bn2.bias
+2019-03-11 02:56:56,268 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_bn_s mapped name: layer3.3.bn2.weight
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2b_w    mapped name: layer3.3.conv2.weight
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_b    mapped name: layer3.3.conv3.bias
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_bn_b mapped name: layer3.3.bn3.bias
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_bn_s mapped name: layer3.3.bn3.weight
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_3_branch2c_w    mapped name: layer3.3.conv3.weight
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_b    mapped name: layer3.4.conv1.bias
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_bn_b mapped name: layer3.4.bn1.bias
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_bn_s mapped name: layer3.4.bn1.weight
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2a_w    mapped name: layer3.4.conv1.weight
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_b    mapped name: layer3.4.conv2.bias
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_bn_b mapped name: layer3.4.bn2.bias
+2019-03-11 02:56:56,269 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_bn_s mapped name: layer3.4.bn2.weight
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2b_w    mapped name: layer3.4.conv2.weight
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_b    mapped name: layer3.4.conv3.bias
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_bn_b mapped name: layer3.4.bn3.bias
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_bn_s mapped name: layer3.4.bn3.weight
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_4_branch2c_w    mapped name: layer3.4.conv3.weight
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_b    mapped name: layer3.5.conv1.bias
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_bn_b mapped name: layer3.5.bn1.bias
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_bn_s mapped name: layer3.5.bn1.weight
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2a_w    mapped name: layer3.5.conv1.weight
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_b    mapped name: layer3.5.conv2.bias
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_bn_b mapped name: layer3.5.bn2.bias
+2019-03-11 02:56:56,270 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_bn_s mapped name: layer3.5.bn2.weight
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2b_w    mapped name: layer3.5.conv2.weight
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_b    mapped name: layer3.5.conv3.bias
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_bn_b mapped name: layer3.5.bn3.bias
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_bn_s mapped name: layer3.5.bn3.weight
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res4_5_branch2c_w    mapped name: layer3.5.conv3.weight
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_b     mapped name: layer4.0.downsample.0.bias
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_bn_b  mapped name: layer4.0.downsample.1.bias
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_bn_s  mapped name: layer4.0.downsample.1.weight
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch1_w     mapped name: layer4.0.downsample.0.weight
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_b    mapped name: layer4.0.conv1.bias
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_bn_b mapped name: layer4.0.bn1.bias
+2019-03-11 02:56:56,271 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_bn_s mapped name: layer4.0.bn1.weight
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2a_w    mapped name: layer4.0.conv1.weight
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_b    mapped name: layer4.0.conv2.bias
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_bn_b mapped name: layer4.0.bn2.bias
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_bn_s mapped name: layer4.0.bn2.weight
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2b_w    mapped name: layer4.0.conv2.weight
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_b    mapped name: layer4.0.conv3.bias
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_bn_b mapped name: layer4.0.bn3.bias
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_bn_s mapped name: layer4.0.bn3.weight
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_0_branch2c_w    mapped name: layer4.0.conv3.weight
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_b    mapped name: layer4.1.conv1.bias
+2019-03-11 02:56:56,272 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_bn_b mapped name: layer4.1.bn1.bias
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_bn_s mapped name: layer4.1.bn1.weight
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2a_w    mapped name: layer4.1.conv1.weight
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_b    mapped name: layer4.1.conv2.bias
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_bn_b mapped name: layer4.1.bn2.bias
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_bn_s mapped name: layer4.1.bn2.weight
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2b_w    mapped name: layer4.1.conv2.weight
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_b    mapped name: layer4.1.conv3.bias
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_bn_b mapped name: layer4.1.bn3.bias
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_bn_s mapped name: layer4.1.bn3.weight
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_1_branch2c_w    mapped name: layer4.1.conv3.weight
+2019-03-11 02:56:56,273 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_b    mapped name: layer4.2.conv1.bias
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_bn_b mapped name: layer4.2.bn1.bias
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_bn_s mapped name: layer4.2.bn1.weight
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2a_w    mapped name: layer4.2.conv1.weight
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_b    mapped name: layer4.2.conv2.bias
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_bn_b mapped name: layer4.2.bn2.bias
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_bn_s mapped name: layer4.2.bn2.weight
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2b_w    mapped name: layer4.2.conv2.weight
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_b    mapped name: layer4.2.conv3.bias
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_bn_b mapped name: layer4.2.bn3.bias
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_bn_s mapped name: layer4.2.bn3.weight
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res5_2_branch2c_w    mapped name: layer4.2.conv3.weight
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res_conv1_bn_b       mapped name: bn1.bias
+2019-03-11 02:56:56,274 maskrcnn_benchmark.utils.c2_model_loading INFO: C2 name: res_conv1_bn_s       mapped name: bn1.weight
+2019-03-11 02:56:56,293 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn1.bias                                         loaded from layer1.0.bn1.bias            of shape (64,)
+2019-03-11 02:56:56,293 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn1.weight                                       loaded from layer1.0.bn1.weight          of shape (64,)
+2019-03-11 02:56:56,293 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn2.bias                                         loaded from layer1.0.bn2.bias            of shape (64,)
+2019-03-11 02:56:56,293 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn2.weight                                       loaded from layer1.0.bn2.weight          of shape (64,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn3.bias                                         loaded from layer1.0.bn3.bias            of shape (256,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.bn3.weight                                       loaded from layer1.0.bn3.weight          of shape (256,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.conv1.weight                                     loaded from layer1.0.conv1.weight        of shape (64, 64, 1, 1)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.conv2.weight                                     loaded from layer1.0.conv2.weight        of shape (64, 64, 3, 3)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.conv3.weight                                     loaded from layer1.0.conv3.weight        of shape (256, 64, 1, 1)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.downsample.0.weight                              loaded from layer1.0.downsample.0.weight of shape (256, 64, 1, 1)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.downsample.1.bias                                loaded from layer1.0.downsample.1.bias   of shape (256,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.0.downsample.1.weight                              loaded from layer1.0.downsample.1.weight of shape (256,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn1.bias                                         loaded from layer1.1.bn1.bias            of shape (64,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn1.weight                                       loaded from layer1.1.bn1.weight          of shape (64,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn2.bias                                         loaded from layer1.1.bn2.bias            of shape (64,)
+2019-03-11 02:56:56,294 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn2.weight                                       loaded from layer1.1.bn2.weight          of shape (64,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn3.bias                                         loaded from layer1.1.bn3.bias            of shape (256,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.bn3.weight                                       loaded from layer1.1.bn3.weight          of shape (256,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.conv1.weight                                     loaded from layer1.1.conv1.weight        of shape (64, 256, 1, 1)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.conv2.weight                                     loaded from layer1.1.conv2.weight        of shape (64, 64, 3, 3)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.1.conv3.weight                                     loaded from layer1.1.conv3.weight        of shape (256, 64, 1, 1)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn1.bias                                         loaded from layer1.2.bn1.bias            of shape (64,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn1.weight                                       loaded from layer1.2.bn1.weight          of shape (64,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn2.bias                                         loaded from layer1.2.bn2.bias            of shape (64,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn2.weight                                       loaded from layer1.2.bn2.weight          of shape (64,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn3.bias                                         loaded from layer1.2.bn3.bias            of shape (256,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.bn3.weight                                       loaded from layer1.2.bn3.weight          of shape (256,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.conv1.weight                                     loaded from layer1.2.conv1.weight        of shape (64, 256, 1, 1)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.conv2.weight                                     loaded from layer1.2.conv2.weight        of shape (64, 64, 3, 3)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer1.2.conv3.weight                                     loaded from layer1.2.conv3.weight        of shape (256, 64, 1, 1)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn1.bias                                         loaded from layer2.0.bn1.bias            of shape (128,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn1.weight                                       loaded from layer2.0.bn1.weight          of shape (128,)
+2019-03-11 02:56:56,295 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn2.bias                                         loaded from layer2.0.bn2.bias            of shape (128,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn2.weight                                       loaded from layer2.0.bn2.weight          of shape (128,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn3.bias                                         loaded from layer2.0.bn3.bias            of shape (512,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.bn3.weight                                       loaded from layer2.0.bn3.weight          of shape (512,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.conv1.weight                                     loaded from layer2.0.conv1.weight        of shape (128, 256, 1, 1)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.conv2.weight                                     loaded from layer2.0.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.conv3.weight                                     loaded from layer2.0.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.downsample.0.weight                              loaded from layer2.0.downsample.0.weight of shape (512, 256, 1, 1)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.downsample.1.bias                                loaded from layer2.0.downsample.1.bias   of shape (512,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.0.downsample.1.weight                              loaded from layer2.0.downsample.1.weight of shape (512,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn1.bias                                         loaded from layer2.1.bn1.bias            of shape (128,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn1.weight                                       loaded from layer2.1.bn1.weight          of shape (128,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn2.bias                                         loaded from layer2.1.bn2.bias            of shape (128,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn2.weight                                       loaded from layer2.1.bn2.weight          of shape (128,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn3.bias                                         loaded from layer2.1.bn3.bias            of shape (512,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.bn3.weight                                       loaded from layer2.1.bn3.weight          of shape (512,)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.conv1.weight                                     loaded from layer2.1.conv1.weight        of shape (128, 512, 1, 1)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.conv2.weight                                     loaded from layer2.1.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:56:56,296 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.1.conv3.weight                                     loaded from layer2.1.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn1.bias                                         loaded from layer2.2.bn1.bias            of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn1.weight                                       loaded from layer2.2.bn1.weight          of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn2.bias                                         loaded from layer2.2.bn2.bias            of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn2.weight                                       loaded from layer2.2.bn2.weight          of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn3.bias                                         loaded from layer2.2.bn3.bias            of shape (512,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.bn3.weight                                       loaded from layer2.2.bn3.weight          of shape (512,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.conv1.weight                                     loaded from layer2.2.conv1.weight        of shape (128, 512, 1, 1)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.conv2.weight                                     loaded from layer2.2.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.2.conv3.weight                                     loaded from layer2.2.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn1.bias                                         loaded from layer2.3.bn1.bias            of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn1.weight                                       loaded from layer2.3.bn1.weight          of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn2.bias                                         loaded from layer2.3.bn2.bias            of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn2.weight                                       loaded from layer2.3.bn2.weight          of shape (128,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn3.bias                                         loaded from layer2.3.bn3.bias            of shape (512,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.bn3.weight                                       loaded from layer2.3.bn3.weight          of shape (512,)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.conv1.weight                                     loaded from layer2.3.conv1.weight        of shape (128, 512, 1, 1)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.conv2.weight                                     loaded from layer2.3.conv2.weight        of shape (128, 128, 3, 3)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer2.3.conv3.weight                                     loaded from layer2.3.conv3.weight        of shape (512, 128, 1, 1)
+2019-03-11 02:56:56,297 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn1.bias                                         loaded from layer3.0.bn1.bias            of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn1.weight                                       loaded from layer3.0.bn1.weight          of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn2.bias                                         loaded from layer3.0.bn2.bias            of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn2.weight                                       loaded from layer3.0.bn2.weight          of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn3.bias                                         loaded from layer3.0.bn3.bias            of shape (1024,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.bn3.weight                                       loaded from layer3.0.bn3.weight          of shape (1024,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.conv1.weight                                     loaded from layer3.0.conv1.weight        of shape (256, 512, 1, 1)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.conv2.weight                                     loaded from layer3.0.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.conv3.weight                                     loaded from layer3.0.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.downsample.0.weight                              loaded from layer3.0.downsample.0.weight of shape (1024, 512, 1, 1)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.downsample.1.bias                                loaded from layer3.0.downsample.1.bias   of shape (1024,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.0.downsample.1.weight                              loaded from layer3.0.downsample.1.weight of shape (1024,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn1.bias                                         loaded from layer3.1.bn1.bias            of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn1.weight                                       loaded from layer3.1.bn1.weight          of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn2.bias                                         loaded from layer3.1.bn2.bias            of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn2.weight                                       loaded from layer3.1.bn2.weight          of shape (256,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn3.bias                                         loaded from layer3.1.bn3.bias            of shape (1024,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.bn3.weight                                       loaded from layer3.1.bn3.weight          of shape (1024,)
+2019-03-11 02:56:56,298 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.conv1.weight                                     loaded from layer3.1.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.conv2.weight                                     loaded from layer3.1.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.1.conv3.weight                                     loaded from layer3.1.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn1.bias                                         loaded from layer3.2.bn1.bias            of shape (256,)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn1.weight                                       loaded from layer3.2.bn1.weight          of shape (256,)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn2.bias                                         loaded from layer3.2.bn2.bias            of shape (256,)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn2.weight                                       loaded from layer3.2.bn2.weight          of shape (256,)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn3.bias                                         loaded from layer3.2.bn3.bias            of shape (1024,)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.bn3.weight                                       loaded from layer3.2.bn3.weight          of shape (1024,)
+2019-03-11 02:56:56,299 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.conv1.weight                                     loaded from layer3.2.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:56:56,322 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.conv2.weight                                     loaded from layer3.2.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:56:56,322 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.2.conv3.weight                                     loaded from layer3.2.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:56:56,322 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn1.bias                                         loaded from layer3.3.bn1.bias            of shape (256,)
+2019-03-11 02:56:56,322 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn1.weight                                       loaded from layer3.3.bn1.weight          of shape (256,)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn2.bias                                         loaded from layer3.3.bn2.bias            of shape (256,)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn2.weight                                       loaded from layer3.3.bn2.weight          of shape (256,)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn3.bias                                         loaded from layer3.3.bn3.bias            of shape (1024,)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.bn3.weight                                       loaded from layer3.3.bn3.weight          of shape (1024,)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.conv1.weight                                     loaded from layer3.3.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.conv2.weight                                     loaded from layer3.3.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.3.conv3.weight                                     loaded from layer3.3.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:56:56,323 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn1.bias                                         loaded from layer3.4.bn1.bias            of shape (256,)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn1.weight                                       loaded from layer3.4.bn1.weight          of shape (256,)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn2.bias                                         loaded from layer3.4.bn2.bias            of shape (256,)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn2.weight                                       loaded from layer3.4.bn2.weight          of shape (256,)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn3.bias                                         loaded from layer3.4.bn3.bias            of shape (1024,)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.bn3.weight                                       loaded from layer3.4.bn3.weight          of shape (1024,)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.conv1.weight                                     loaded from layer3.4.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.conv2.weight                                     loaded from layer3.4.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:56:56,324 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.4.conv3.weight                                     loaded from layer3.4.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn1.bias                                         loaded from layer3.5.bn1.bias            of shape (256,)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn1.weight                                       loaded from layer3.5.bn1.weight          of shape (256,)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn2.bias                                         loaded from layer3.5.bn2.bias            of shape (256,)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn2.weight                                       loaded from layer3.5.bn2.weight          of shape (256,)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn3.bias                                         loaded from layer3.5.bn3.bias            of shape (1024,)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.bn3.weight                                       loaded from layer3.5.bn3.weight          of shape (1024,)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.conv1.weight                                     loaded from layer3.5.conv1.weight        of shape (256, 1024, 1, 1)
+2019-03-11 02:56:56,325 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.conv2.weight                                     loaded from layer3.5.conv2.weight        of shape (256, 256, 3, 3)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.layer3.5.conv3.weight                                     loaded from layer3.5.conv3.weight        of shape (1024, 256, 1, 1)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.stem.bn1.bias                                             loaded from bn1.bias                     of shape (64,)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.stem.bn1.weight                                           loaded from bn1.weight                   of shape (64,)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: backbone.body.stem.conv1.weight                                         loaded from conv1.weight                 of shape (64, 3, 7, 7)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn1.bias                  loaded from layer4.0.bn1.bias            of shape (512,)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn1.weight                loaded from layer4.0.bn1.weight          of shape (512,)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn2.bias                  loaded from layer4.0.bn2.bias            of shape (512,)
+2019-03-11 02:56:56,326 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn2.weight                loaded from layer4.0.bn2.weight          of shape (512,)
+2019-03-11 02:56:56,327 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn3.bias                  loaded from layer4.0.bn3.bias            of shape (2048,)
+2019-03-11 02:56:56,327 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.bn3.weight                loaded from layer4.0.bn3.weight          of shape (2048,)
+2019-03-11 02:56:56,327 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.conv1.weight              loaded from layer4.0.conv1.weight        of shape (512, 1024, 1, 1)
+2019-03-11 02:56:56,327 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.conv2.weight              loaded from layer4.0.conv2.weight        of shape (512, 512, 3, 3)
+2019-03-11 02:56:56,327 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.conv3.weight              loaded from layer4.0.conv3.weight        of shape (2048, 512, 1, 1)
+2019-03-11 02:56:56,327 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.downsample.0.weight       loaded from layer4.0.downsample.0.weight of shape (2048, 1024, 1, 1)
+2019-03-11 02:56:56,327 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.downsample.1.bias         loaded from layer4.0.downsample.1.bias   of shape (2048,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.0.downsample.1.weight       loaded from layer4.0.downsample.1.weight of shape (2048,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn1.bias                  loaded from layer4.1.bn1.bias            of shape (512,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn1.weight                loaded from layer4.1.bn1.weight          of shape (512,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn2.bias                  loaded from layer4.1.bn2.bias            of shape (512,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn2.weight                loaded from layer4.1.bn2.weight          of shape (512,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn3.bias                  loaded from layer4.1.bn3.bias            of shape (2048,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.bn3.weight                loaded from layer4.1.bn3.weight          of shape (2048,)
+2019-03-11 02:56:56,328 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.conv1.weight              loaded from layer4.1.conv1.weight        of shape (512, 2048, 1, 1)
+2019-03-11 02:56:56,329 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.conv2.weight              loaded from layer4.1.conv2.weight        of shape (512, 512, 3, 3)
+2019-03-11 02:56:56,329 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.1.conv3.weight              loaded from layer4.1.conv3.weight        of shape (2048, 512, 1, 1)
+2019-03-11 02:56:56,329 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn1.bias                  loaded from layer4.2.bn1.bias            of shape (512,)
+2019-03-11 02:56:56,329 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn1.weight                loaded from layer4.2.bn1.weight          of shape (512,)
+2019-03-11 02:56:56,329 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn2.bias                  loaded from layer4.2.bn2.bias            of shape (512,)
+2019-03-11 02:56:56,329 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn2.weight                loaded from layer4.2.bn2.weight          of shape (512,)
+2019-03-11 02:56:56,329 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn3.bias                  loaded from layer4.2.bn3.bias            of shape (2048,)
+2019-03-11 02:56:56,330 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.bn3.weight                loaded from layer4.2.bn3.weight          of shape (2048,)
+2019-03-11 02:56:56,330 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.conv1.weight              loaded from layer4.2.conv1.weight        of shape (512, 2048, 1, 1)
+2019-03-11 02:56:56,330 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.conv2.weight              loaded from layer4.2.conv2.weight        of shape (512, 512, 3, 3)
+2019-03-11 02:56:56,330 maskrcnn_benchmark.utils.model_serialization INFO: roi_heads.box.feature_extractor.head.layer4.2.conv3.weight              loaded from layer4.2.conv3.weight        of shape (2048, 512, 1, 1)
+2019-03-11 02:56:56,365 maskrcnn_benchmark.data.build WARNING: When using more than one image per GPU you may encounter an out-of-memory (OOM) error if your GPU does not have sufficient memory. If this happens, you can reduce SOLVER.IMS_PER_BATCH (for training) or TEST.IMS_PER_BATCH (for inference). For training, you must also adjust the learning rate and schedule length according to the linear scaling rule. See for example: https://github.com/facebookresearch/Detectron/blob/master/configs/getting_started/tutorial_1gpu_e2e_faster_rcnn_R-50-FPN.yaml#L14
+2019-03-11 02:56:59,832 maskrcnn_benchmark.trainer INFO: Start training
+2019-03-11 02:57:21,584 maskrcnn_benchmark.trainer INFO: eta: 2 days, 6:22:01  iter: 20  loss: 1.4187 (1.9045)  loss_classifier: 0.6009 (0.9800)  loss_box_reg: 0.1040 (0.1166)  loss_objectness: 0.2868 (0.3744)  loss_rpn_box_reg: 0.2145 (0.4335)  time: 1.0650 (1.0875)  data: 0.0093 (0.0237)  lr: 0.003587  max mem: 7411
+2019-03-11 02:57:42,105 maskrcnn_benchmark.trainer INFO: eta: 2 days, 4:49:38  iter: 40  loss: 0.8261 (1.4236)  loss_classifier: 0.2009 (0.5897)  loss_box_reg: 0.0500 (0.0922)  loss_objectness: 0.2524 (0.3150)  loss_rpn_box_reg: 0.4063 (0.4267)  time: 1.0363 (1.0568)  data: 0.0096 (0.0164)  lr: 0.003853  max mem: 7411
+2019-03-11 02:57:59,388 maskrcnn_benchmark.trainer INFO: eta: 2 days, 1:36:43  iter: 60  loss: 0.7648 (1.2120)  loss_classifier: 0.2654 (0.4823)  loss_box_reg: 0.0686 (0.0884)  loss_objectness: 0.2240 (0.2941)  loss_rpn_box_reg: 0.1261 (0.3473)  time: 0.8256 (0.9926)  data: 0.0047 (0.0125)  lr: 0.004120  max mem: 7411
+2019-03-11 02:58:20,740 maskrcnn_benchmark.trainer INFO: eta: 2 days, 2:32:37  iter: 80  loss: 0.6049 (1.0712)  loss_classifier: 0.1305 (0.4030)  loss_box_reg: 0.0420 (0.0806)  loss_objectness: 0.1927 (0.2721)  loss_rpn_box_reg: 0.1303 (0.3155)  time: 1.0894 (1.0113)  data: 0.0051 (0.0111)  lr: 0.004387  max mem: 7453
+2019-03-11 02:58:38,437 maskrcnn_benchmark.trainer INFO: eta: 2 days, 1:16:27  iter: 100  loss: 1.0469 (1.0726)  loss_classifier: 0.3589 (0.4013)  loss_box_reg: 0.1477 (0.0970)  loss_objectness: 0.2654 (0.2712)  loss_rpn_box_reg: 0.1652 (0.3032)  time: 0.9041 (0.9860)  data: 0.0048 (0.0100)  lr: 0.004653  max mem: 7453
+2019-03-11 02:58:57,071 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:48:58  iter: 120  loss: 0.6854 (1.0148)  loss_classifier: 0.2495 (0.3770)  loss_box_reg: 0.0891 (0.0971)  loss_objectness: 0.1612 (0.2541)  loss_rpn_box_reg: 0.1985 (0.2865)  time: 0.9339 (0.9770)  data: 0.0101 (0.0100)  lr: 0.004920  max mem: 7453
+2019-03-11 02:59:17,435 maskrcnn_benchmark.trainer INFO: eta: 2 days, 1:06:18  iter: 140  loss: 0.7074 (0.9757)  loss_classifier: 0.2679 (0.3608)  loss_box_reg: 0.1074 (0.0983)  loss_objectness: 0.1941 (0.2463)  loss_rpn_box_reg: 0.1393 (0.2703)  time: 1.0468 (0.9829)  data: 0.0097 (0.0100)  lr: 0.005187  max mem: 7453
+2019-03-11 02:59:33,741 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:03:11  iter: 160  loss: 0.7671 (0.9500)  loss_classifier: 0.2359 (0.3516)  loss_box_reg: 0.0915 (0.0995)  loss_objectness: 0.1658 (0.2358)  loss_rpn_box_reg: 0.1946 (0.2631)  time: 0.8369 (0.9619)  data: 0.0101 (0.0100)  lr: 0.005453  max mem: 7453
+2019-03-11 02:59:53,680 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:14:31  iter: 180  loss: 0.7234 (0.9228)  loss_classifier: 0.2558 (0.3407)  loss_box_reg: 0.0964 (0.0996)  loss_objectness: 0.1866 (0.2298)  loss_rpn_box_reg: 0.1511 (0.2527)  time: 1.0584 (0.9658)  data: 0.0099 (0.0100)  lr: 0.005720  max mem: 7453
+2019-03-11 03:00:12,961 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:13:41  iter: 200  loss: 0.6829 (0.9039)  loss_classifier: 0.2619 (0.3320)  loss_box_reg: 0.0969 (0.0996)  loss_objectness: 0.2112 (0.2294)  loss_rpn_box_reg: 0.0963 (0.2428)  time: 0.9517 (0.9656)  data: 0.0101 (0.0100)  lr: 0.005987  max mem: 7453
+2019-03-11 03:00:31,517 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:03:03  iter: 220  loss: 0.7057 (0.8910)  loss_classifier: 0.2764 (0.3293)  loss_box_reg: 0.0859 (0.1011)  loss_objectness: 0.1733 (0.2263)  loss_rpn_box_reg: 0.1104 (0.2343)  time: 0.9991 (0.9622)  data: 0.0099 (0.0100)  lr: 0.006253  max mem: 7453
+2019-03-11 03:00:51,564 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:12:45  iter: 240  loss: 0.6814 (0.8734)  loss_classifier: 0.1726 (0.3199)  loss_box_reg: 0.0815 (0.1000)  loss_objectness: 0.1996 (0.2247)  loss_rpn_box_reg: 0.1279 (0.2289)  time: 1.0353 (0.9655)  data: 0.0054 (0.0098)  lr: 0.006520  max mem: 7574
+2019-03-11 03:01:10,331 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:06:10  iter: 260  loss: 0.6853 (0.8621)  loss_classifier: 0.2701 (0.3160)  loss_box_reg: 0.1217 (0.1026)  loss_objectness: 0.1526 (0.2211)  loss_rpn_box_reg: 0.0735 (0.2224)  time: 0.9636 (0.9634)  data: 0.0051 (0.0094)  lr: 0.006787  max mem: 7574
+2019-03-11 03:01:28,261 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:51:31  iter: 280  loss: 0.7302 (0.8594)  loss_classifier: 0.1989 (0.3174)  loss_box_reg: 0.1322 (0.1056)  loss_objectness: 0.1707 (0.2188)  loss_rpn_box_reg: 0.1316 (0.2177)  time: 0.9114 (0.9587)  data: 0.0097 (0.0094)  lr: 0.007053  max mem: 7574
+2019-03-11 03:01:46,937 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:46:14  iter: 300  loss: 0.7472 (0.8536)  loss_classifier: 0.2618 (0.3167)  loss_box_reg: 0.1010 (0.1076)  loss_objectness: 0.1499 (0.2149)  loss_rpn_box_reg: 0.1516 (0.2143)  time: 0.9965 (0.9570)  data: 0.0099 (0.0094)  lr: 0.007320  max mem: 7574
+2019-03-11 03:02:05,396 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:39:32  iter: 320  loss: 0.7542 (0.8485)  loss_classifier: 0.3022 (0.3156)  loss_box_reg: 0.1155 (0.1089)  loss_objectness: 0.1343 (0.2108)  loss_rpn_box_reg: 0.1362 (0.2131)  time: 0.9396 (0.9549)  data: 0.0102 (0.0095)  lr: 0.007587  max mem: 7574
+2019-03-11 03:02:23,736 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:32:33  iter: 340  loss: 0.6083 (0.8395)  loss_classifier: 0.2686 (0.3140)  loss_box_reg: 0.1061 (0.1095)  loss_objectness: 0.1062 (0.2078)  loss_rpn_box_reg: 0.1146 (0.2082)  time: 0.9682 (0.9527)  data: 0.0101 (0.0095)  lr: 0.007853  max mem: 7574
+2019-03-11 03:02:42,364 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:28:42  iter: 360  loss: 0.6233 (0.8309)  loss_classifier: 0.2119 (0.3120)  loss_box_reg: 0.0903 (0.1090)  loss_objectness: 0.1401 (0.2046)  loss_rpn_box_reg: 0.1306 (0.2052)  time: 0.9543 (0.9515)  data: 0.0102 (0.0095)  lr: 0.008120  max mem: 7574
+2019-03-11 03:03:03,394 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:44:08  iter: 380  loss: 0.6266 (0.8204)  loss_classifier: 0.2355 (0.3075)  loss_box_reg: 0.0897 (0.1079)  loss_objectness: 0.1557 (0.2028)  loss_rpn_box_reg: 0.1225 (0.2023)  time: 1.1023 (0.9567)  data: 0.0104 (0.0096)  lr: 0.008387  max mem: 7574
+2019-03-11 03:03:25,351 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:04:56  iter: 400  loss: 0.6656 (0.8151)  loss_classifier: 0.2393 (0.3053)  loss_box_reg: 0.1075 (0.1085)  loss_objectness: 0.1579 (0.2009)  loss_rpn_box_reg: 0.1494 (0.2004)  time: 1.1039 (0.9638)  data: 0.0106 (0.0096)  lr: 0.008653  max mem: 7574
+2019-03-11 03:03:47,398 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:24:22  iter: 420  loss: 0.5402 (0.8032)  loss_classifier: 0.1703 (0.2998)  loss_box_reg: 0.0832 (0.1072)  loss_objectness: 0.1325 (0.1986)  loss_rpn_box_reg: 0.1113 (0.1977)  time: 1.0958 (0.9704)  data: 0.0096 (0.0096)  lr: 0.008920  max mem: 7574
+2019-03-11 03:04:07,817 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:30:55  iter: 440  loss: 0.7377 (0.8014)  loss_classifier: 0.2305 (0.2977)  loss_box_reg: 0.1074 (0.1081)  loss_objectness: 0.1856 (0.1982)  loss_rpn_box_reg: 0.1361 (0.1975)  time: 1.0801 (0.9727)  data: 0.0098 (0.0096)  lr: 0.009187  max mem: 7574
+2019-03-11 03:04:27,059 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:29:13  iter: 460  loss: 0.7878 (0.8057)  loss_classifier: 0.3691 (0.3021)  loss_box_reg: 0.1341 (0.1106)  loss_objectness: 0.1567 (0.1974)  loss_rpn_box_reg: 0.1155 (0.1956)  time: 0.9797 (0.9722)  data: 0.0102 (0.0096)  lr: 0.009453  max mem: 7574
+2019-03-11 03:04:45,406 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:22:03  iter: 480  loss: 0.7716 (0.8037)  loss_classifier: 0.2616 (0.3020)  loss_box_reg: 0.1159 (0.1114)  loss_objectness: 0.1495 (0.1963)  loss_rpn_box_reg: 0.1095 (0.1940)  time: 0.9172 (0.9699)  data: 0.0102 (0.0097)  lr: 0.009720  max mem: 7574
+2019-03-11 03:05:04,088 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:17:26  iter: 500  loss: 0.7836 (0.8066)  loss_classifier: 0.2998 (0.3038)  loss_box_reg: 0.1105 (0.1121)  loss_objectness: 0.1732 (0.1961)  loss_rpn_box_reg: 0.2066 (0.1946)  time: 0.9303 (0.9685)  data: 0.0104 (0.0097)  lr: 0.009987  max mem: 7574
+2019-03-11 03:05:21,987 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:08:39  iter: 520  loss: 0.7569 (0.8052)  loss_classifier: 0.3017 (0.3038)  loss_box_reg: 0.1078 (0.1124)  loss_objectness: 0.1520 (0.1947)  loss_rpn_box_reg: 0.2063 (0.1943)  time: 0.9043 (0.9657)  data: 0.0105 (0.0097)  lr: 0.010000  max mem: 7574
+2019-03-11 03:05:41,427 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:09:02  iter: 540  loss: 0.7447 (0.8022)  loss_classifier: 0.2476 (0.3023)  loss_box_reg: 0.0864 (0.1119)  loss_objectness: 0.1774 (0.1941)  loss_rpn_box_reg: 0.1646 (0.1939)  time: 1.0023 (0.9659)  data: 0.0103 (0.0097)  lr: 0.010000  max mem: 7574
+2019-03-11 03:05:59,822 maskrcnn_benchmark.trainer INFO: eta: 2 days, 0:03:47  iter: 560  loss: 0.7920 (0.8008)  loss_classifier: 0.3385 (0.3034)  loss_box_reg: 0.1379 (0.1126)  loss_objectness: 0.1689 (0.1934)  loss_rpn_box_reg: 0.0922 (0.1914)  time: 0.8741 (0.9643)  data: 0.0051 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:06:18,256 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:59:04  iter: 580  loss: 0.7647 (0.7990)  loss_classifier: 0.2797 (0.3026)  loss_box_reg: 0.1119 (0.1132)  loss_objectness: 0.1466 (0.1928)  loss_rpn_box_reg: 0.0948 (0.1904)  time: 0.9270 (0.9628)  data: 0.0096 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:06:34,272 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:42:36  iter: 600  loss: 0.8784 (0.8014)  loss_classifier: 0.3373 (0.3047)  loss_box_reg: 0.1861 (0.1155)  loss_objectness: 0.1315 (0.1918)  loss_rpn_box_reg: 0.1490 (0.1894)  time: 0.8277 (0.9574)  data: 0.0096 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:06:52,139 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:36:06  iter: 620  loss: 0.6629 (0.7984)  loss_classifier: 0.2634 (0.3042)  loss_box_reg: 0.1430 (0.1166)  loss_objectness: 0.1341 (0.1905)  loss_rpn_box_reg: 0.1153 (0.1870)  time: 0.9140 (0.9553)  data: 0.0096 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:07:12,343 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:40:55  iter: 640  loss: 0.6895 (0.7961)  loss_classifier: 0.2465 (0.3032)  loss_box_reg: 0.1427 (0.1175)  loss_objectness: 0.1350 (0.1895)  loss_rpn_box_reg: 0.0872 (0.1859)  time: 1.0203 (0.9570)  data: 0.0101 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:07:31,081 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:38:46  iter: 660  loss: 0.6561 (0.7925)  loss_classifier: 0.2686 (0.3029)  loss_box_reg: 0.0996 (0.1172)  loss_objectness: 0.1159 (0.1877)  loss_rpn_box_reg: 0.1330 (0.1847)  time: 0.9226 (0.9564)  data: 0.0094 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:07:46,962 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:24:11  iter: 680  loss: 0.8141 (0.7936)  loss_classifier: 0.3374 (0.3050)  loss_box_reg: 0.1228 (0.1185)  loss_objectness: 0.1522 (0.1868)  loss_rpn_box_reg: 0.1091 (0.1832)  time: 0.8103 (0.9517)  data: 0.0100 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:08:05,093 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:20:01  iter: 700  loss: 0.9303 (0.7976)  loss_classifier: 0.3900 (0.3085)  loss_box_reg: 0.1683 (0.1201)  loss_objectness: 0.1468 (0.1863)  loss_rpn_box_reg: 0.1231 (0.1828)  time: 0.9220 (0.9504)  data: 0.0099 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:08:22,427 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:12:45  iter: 720  loss: 0.8573 (0.7989)  loss_classifier: 0.3612 (0.3103)  loss_box_reg: 0.1647 (0.1214)  loss_objectness: 0.1552 (0.1858)  loss_rpn_box_reg: 0.0844 (0.1813)  time: 0.8406 (0.9480)  data: 0.0101 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:08:37,794 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:57:55  iter: 740  loss: 0.6843 (0.7984)  loss_classifier: 0.2741 (0.3107)  loss_box_reg: 0.1213 (0.1224)  loss_objectness: 0.1364 (0.1851)  loss_rpn_box_reg: 0.1254 (0.1802)  time: 0.7404 (0.9432)  data: 0.0097 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:08:57,253 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:59:57  iter: 760  loss: 0.7812 (0.7970)  loss_classifier: 0.3083 (0.3109)  loss_box_reg: 0.1379 (0.1230)  loss_objectness: 0.1422 (0.1842)  loss_rpn_box_reg: 0.1077 (0.1790)  time: 1.0059 (0.9440)  data: 0.0102 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:09:14,586 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:53:43  iter: 780  loss: 0.7753 (0.7963)  loss_classifier: 0.2822 (0.3105)  loss_box_reg: 0.1312 (0.1234)  loss_objectness: 0.1089 (0.1835)  loss_rpn_box_reg: 0.1804 (0.1789)  time: 0.8602 (0.9420)  data: 0.0095 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:09:34,292 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:56:38  iter: 800  loss: 0.5730 (0.7929)  loss_classifier: 0.2223 (0.3087)  loss_box_reg: 0.0924 (0.1232)  loss_objectness: 0.1717 (0.1834)  loss_rpn_box_reg: 0.1141 (0.1776)  time: 0.9797 (0.9431)  data: 0.0098 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:09:54,994 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:03:01  iter: 820  loss: 0.6597 (0.7893)  loss_classifier: 0.2405 (0.3069)  loss_box_reg: 0.0887 (0.1226)  loss_objectness: 0.1415 (0.1828)  loss_rpn_box_reg: 0.1458 (0.1769)  time: 1.0401 (0.9453)  data: 0.0098 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:10:15,227 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:07:25  iter: 840  loss: 0.5934 (0.7864)  loss_classifier: 0.2098 (0.3052)  loss_box_reg: 0.0787 (0.1225)  loss_objectness: 0.1440 (0.1824)  loss_rpn_box_reg: 0.0963 (0.1764)  time: 1.0578 (0.9469)  data: 0.0099 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:10:33,737 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:05:37  iter: 860  loss: 0.6830 (0.7850)  loss_classifier: 0.2795 (0.3049)  loss_box_reg: 0.1305 (0.1232)  loss_objectness: 0.1142 (0.1812)  loss_rpn_box_reg: 0.1425 (0.1757)  time: 0.9188 (0.9464)  data: 0.0091 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:10:52,574 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:05:00  iter: 880  loss: 0.6396 (0.7821)  loss_classifier: 0.2524 (0.3035)  loss_box_reg: 0.0936 (0.1229)  loss_objectness: 0.1448 (0.1804)  loss_rpn_box_reg: 0.1148 (0.1752)  time: 0.8954 (0.9463)  data: 0.0099 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:11:10,417 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:01:05  iter: 900  loss: 0.6059 (0.7799)  loss_classifier: 0.2744 (0.3036)  loss_box_reg: 0.1133 (0.1231)  loss_objectness: 0.1378 (0.1799)  loss_rpn_box_reg: 0.0567 (0.1733)  time: 0.8672 (0.9451)  data: 0.0099 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:11:30,665 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:05:08  iter: 920  loss: 0.5894 (0.7764)  loss_classifier: 0.2360 (0.3024)  loss_box_reg: 0.1105 (0.1230)  loss_objectness: 0.1310 (0.1789)  loss_rpn_box_reg: 0.0943 (0.1721)  time: 1.0262 (0.9466)  data: 0.0096 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:11:51,493 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:10:51  iter: 940  loss: 0.6365 (0.7732)  loss_classifier: 0.2736 (0.3017)  loss_box_reg: 0.1339 (0.1233)  loss_objectness: 0.1056 (0.1776)  loss_rpn_box_reg: 0.0856 (0.1705)  time: 1.0373 (0.9486)  data: 0.0101 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:12:08,804 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:05:22  iter: 960  loss: 0.6238 (0.7713)  loss_classifier: 0.2330 (0.3012)  loss_box_reg: 0.1239 (0.1235)  loss_objectness: 0.1226 (0.1767)  loss_rpn_box_reg: 0.1211 (0.1700)  time: 0.8383 (0.9468)  data: 0.0101 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:12:26,856 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:02:22  iter: 980  loss: 0.6192 (0.7691)  loss_classifier: 0.2760 (0.3004)  loss_box_reg: 0.1262 (0.1238)  loss_objectness: 0.1189 (0.1756)  loss_rpn_box_reg: 0.1047 (0.1693)  time: 0.8756 (0.9459)  data: 0.0098 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:12:45,745 maskrcnn_benchmark.trainer INFO: eta: 1 day, 23:01:57  iter: 1000  loss: 0.6831 (0.7672)  loss_classifier: 0.2685 (0.3002)  loss_box_reg: 0.1164 (0.1238)  loss_objectness: 0.1078 (0.1745)  loss_rpn_box_reg: 0.1076 (0.1687)  time: 0.9848 (0.9459)  data: 0.0098 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:13:01,594 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:52:40  iter: 1020  loss: 0.6618 (0.7670)  loss_classifier: 0.2931 (0.3012)  loss_box_reg: 0.1276 (0.1244)  loss_objectness: 0.1001 (0.1736)  loss_rpn_box_reg: 0.1206 (0.1678)  time: 0.7929 (0.9429)  data: 0.0097 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:13:20,343 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:52:02  iter: 1040  loss: 0.5188 (0.7638)  loss_classifier: 0.1927 (0.2997)  loss_box_reg: 0.0873 (0.1240)  loss_objectness: 0.1232 (0.1727)  loss_rpn_box_reg: 0.1128 (0.1673)  time: 0.9324 (0.9428)  data: 0.0100 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:13:38,521 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:49:49  iter: 1060  loss: 0.7225 (0.7640)  loss_classifier: 0.2856 (0.3003)  loss_box_reg: 0.1397 (0.1248)  loss_objectness: 0.1140 (0.1720)  loss_rpn_box_reg: 0.1367 (0.1670)  time: 0.9151 (0.9422)  data: 0.0097 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:13:56,997 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:48:29  iter: 1080  loss: 0.6807 (0.7632)  loss_classifier: 0.2256 (0.3001)  loss_box_reg: 0.1129 (0.1251)  loss_objectness: 0.0899 (0.1710)  loss_rpn_box_reg: 0.1261 (0.1670)  time: 0.9368 (0.9418)  data: 0.0100 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:14:15,414 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:47:02  iter: 1100  loss: 0.7557 (0.7633)  loss_classifier: 0.2798 (0.3002)  loss_box_reg: 0.1226 (0.1252)  loss_objectness: 0.1388 (0.1707)  loss_rpn_box_reg: 0.1245 (0.1671)  time: 0.9005 (0.9414)  data: 0.0101 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:14:33,096 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:43:40  iter: 1120  loss: 0.6359 (0.7622)  loss_classifier: 0.2565 (0.3001)  loss_box_reg: 0.1312 (0.1256)  loss_objectness: 0.1437 (0.1704)  loss_rpn_box_reg: 0.0688 (0.1660)  time: 0.8688 (0.9404)  data: 0.0100 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:14:50,882 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:40:41  iter: 1140  loss: 0.6144 (0.7612)  loss_classifier: 0.2527 (0.2996)  loss_box_reg: 0.1041 (0.1256)  loss_objectness: 0.1411 (0.1699)  loss_rpn_box_reg: 0.1226 (0.1661)  time: 0.8218 (0.9395)  data: 0.0100 (0.0096)  lr: 0.010000  max mem: 7574
+2019-03-11 03:15:10,099 maskrcnn_benchmark.trainer INFO: eta: 1 day, 22:41:28  iter: 1160  loss: 0.5765 (0.7587)  loss_classifier: 0.2415 (0.2989)  loss_box_reg: 0.1142 (0.1254)  loss_objectness: 0.1309 (0.1693)  loss_rpn_box_reg: 0.0699 (0.1651)  time: 0.9578 (0.9399)  data: 0.0100 (0.0097)  lr: 0.010000  max mem: 7574
