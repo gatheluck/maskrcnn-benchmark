@@ -130,8 +130,9 @@ class DetectronCheckpointer(Checkpointer):
             self.logger.info("url {} cached in {}".format(f, cached_f))
             f = cached_f
         # load from custom model (self model dosen't ensure to converge)
-        #if f.startswith(""):
+        if f.endswith(".pth"):
             # TODO: set my f here
+            raise NotImplementedError
 
         # load from my pth file
         #if f.endswith(".pth"):

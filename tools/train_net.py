@@ -147,12 +147,12 @@ def main():
         )
         synchronize()
 
+    cfg.merge_from_file(args.config_file)
+    cfg.merge_from_list(args.opts)
+
 		# override config file
     cfg.OUTPUT_DIR = args.log_dir
     cfg.MODEL.WEIGHT = args.bb_weight
-
-    cfg.merge_from_file(args.config_file)
-    cfg.merge_from_list(args.opts)
     cfg.freeze()
 
     output_dir = cfg.OUTPUT_DIR
