@@ -129,6 +129,13 @@ class DetectronCheckpointer(Checkpointer):
             cached_f = cache_url(f)
             self.logger.info("url {} cached in {}".format(f, cached_f))
             f = cached_f
+        # load from custom model (self model dosen't ensure to converge)
+        #if f.startswith(""):
+            # TODO: set my f here
+
+        # load from my pth file
+        #if f.endswith(".pth"):
+        #    return # TODO: return loaded 
         # convert Caffe2 checkpoint from pkl
         if f.endswith(".pkl"):
             return load_c2_format(self.cfg, f)

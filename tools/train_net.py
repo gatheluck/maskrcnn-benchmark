@@ -25,6 +25,8 @@ from maskrcnn_benchmark.utils.imports import import_file
 from maskrcnn_benchmark.utils.logger import setup_logger
 from maskrcnn_benchmark.utils.miscellaneous import mkdir
 
+bb_weight_default = {"resnet50":"catalog://ImageNetPretrained/MSRA/R-50",
+            }
 
 def train(cfg, local_rank, distributed):
     model = build_detection_model(cfg)
@@ -50,7 +52,7 @@ def train(cfg, local_rank, distributed):
     checkpointer = DetectronCheckpointer(
         cfg, model, optimizer, scheduler, output_dir, save_to_disk
     )
-    extra_checkpoint_data = checkpointer.load(cfg.MODEL.WEIGHT)
+    extra_checkpoint_data = checkpointer.load(cfg.MODEL.WEIGHT) # loading model weight
     arguments.update(extra_checkpoint_data)
 
     data_loader = make_data_loader(
@@ -118,6 +120,7 @@ def main():
         type=str,
     )
     parser.add_argument("-l", "--log_dir", type=str, required=True, help="log directory")
+    parser.add_argument("--bb_weight", type=str, default=bb_weight_default["resnet50"], help="path to backbone weight")
     parser.add_argument("--local_rank", type=int, default=0)
     parser.add_argument(
         "--skip-test",
@@ -146,6 +149,7 @@ def main():
 
 		# override config file
     cfg.OUTPUT_DIR = args.log_dir
+    cfg.MODEL.WEIGHT = args.bb_weight
 
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
