@@ -21,11 +21,12 @@ from maskrcnn_benchmark.utils.miscellaneous import mkdir
 def main():
     parser = argparse.ArgumentParser(description="PyTorch Object Detection Inference")
     parser.add_argument(
-        "--config-file",
+        "--config_file",
         default="/private/home/fmassa/github/detectron.pytorch_v2/configs/e2e_faster_rcnn_R_50_C4_1x_caffe2.yaml",
         metavar="FILE",
         help="path to config file",
     )
+    parser.add_argument("-l", "--log_dir", type=str, required=True, help="log directory")
     parser.add_argument("--local_rank", type=int, default=0)
     parser.add_argument(
         "opts",
@@ -46,11 +47,14 @@ def main():
         )
         synchronize()
 
+    # override config file
+    cfg.OUTPUT_DIR = args.log_dir
+
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     cfg.freeze()
 
-    save_dir = ""
+    save_dir = cfg.OUTPUT_DIR
     logger = setup_logger("maskrcnn_benchmark", save_dir, get_rank())
     logger.info("Using {} GPUs".format(num_gpus))
     logger.info(cfg)
