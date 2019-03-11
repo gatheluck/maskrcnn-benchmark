@@ -68,7 +68,7 @@ def strip_prefix_if_present(state_dict, prefix):
     return stripped_state_dict
 
 
-def load_state_dict(model, loaded_state_dict):
+def load_state_dict(model, loaded_state_dict, bb_weight=None):
     model_state_dict = model.state_dict()
     # if the state_dict comes from a model that was wrapped in a
     # DataParallel or DistributedDataParallel during serialization,
@@ -78,5 +78,6 @@ def load_state_dict(model, loaded_state_dict):
 
     # use strict loading
     model.load_state_dict(model_state_dict)
+    print("bb_weight:", bb_weight)
     print("model._modules.items():", model._modules.items()) # add for debugging
     raise NotImplementedError

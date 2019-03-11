@@ -59,7 +59,7 @@ class Checkpointer(object):
             return {}
         self.logger.info("Loading checkpoint from {}".format(f))
         checkpoint = self._load_file(f)
-        self._load_model(checkpoint) # load model here
+        self._load_model(checkpoint, self.cfg.MODEL.BB_WEIGHT) # load model here
         if "optimizer" in checkpoint and self.optimizer:
             self.logger.info("Loading optimizer from {}".format(f))
             self.optimizer.load_state_dict(checkpoint.pop("optimizer"))
@@ -94,8 +94,8 @@ class Checkpointer(object):
     def _load_file(self, f):
         return torch.load(f, map_location=torch.device("cpu"))
         
-    def _load_model(self, checkpoint):
-        load_state_dict(self.model, checkpoint.pop("model"))
+    def _load_model(self, checkpoint, bb_weight=None):
+        load_state_dict(self.model, checkpoint.pop("model"), bb_weight=None)
 
 
 class DetectronCheckpointer(Checkpointer):

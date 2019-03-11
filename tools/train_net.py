@@ -25,9 +25,6 @@ from maskrcnn_benchmark.utils.imports import import_file
 from maskrcnn_benchmark.utils.logger import setup_logger
 from maskrcnn_benchmark.utils.miscellaneous import mkdir
 
-bb_weight_default = {"resnet50":"catalog://ImageNetPretrained/MSRA/R-50",
-            }
-
 def train(cfg, local_rank, distributed):
     model = build_detection_model(cfg)
     device = torch.device(cfg.MODEL.DEVICE)
@@ -120,7 +117,7 @@ def main():
         type=str,
     )
     parser.add_argument("-l", "--log_dir", type=str, required=True, help="log directory")
-    parser.add_argument("--bb_weight", type=str, default=bb_weight_default["resnet50"], help="path to backbone weight")
+    parser.add_argument("--bb_weight", type=str, default="", help="path to backbone weight")
     parser.add_argument("--local_rank", type=int, default=0)
     parser.add_argument(
         "--skip-test",
@@ -146,13 +143,13 @@ def main():
             backend="nccl", init_method="env://"
         )
         synchronize()
+				
+		# override config file
+    cfg.OUTPUT_DIR = args.log_dir
+    cfg.MODEL.BB_WEIGHT = args.bb_weight
 
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
-
-		# override config file
-    cfg.OUTPUT_DIR = args.log_dir
-    cfg.MODEL.WEIGHT = args.bb_weight
     cfg.freeze()
 
     output_dir = cfg.OUTPUT_DIR
