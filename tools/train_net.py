@@ -144,11 +144,14 @@ def main():
         )
         synchronize()
 
+		# override config file
+    cfg.OUTPUT_DIR = args.log_dir
+
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     cfg.freeze()
 
-    output_dir = args.log_dir # cfg.OUTPUT_DIR
+    output_dir = cfg.OUTPUT_DIR
     if output_dir:
         mkdir(output_dir)
 
