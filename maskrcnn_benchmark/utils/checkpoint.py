@@ -59,7 +59,7 @@ class Checkpointer(object):
             return {}
         self.logger.info("Loading checkpoint from {}".format(f))
         checkpoint = self._load_file(f)
-        self._load_model(checkpoint)
+        self._load_model(checkpoint) # load model here
         if "optimizer" in checkpoint and self.optimizer:
             self.logger.info("Loading optimizer from {}".format(f))
             self.optimizer.load_state_dict(checkpoint.pop("optimizer"))
@@ -93,7 +93,7 @@ class Checkpointer(object):
 
     def _load_file(self, f):
         return torch.load(f, map_location=torch.device("cpu"))
-
+        
     def _load_model(self, checkpoint):
         load_state_dict(self.model, checkpoint.pop("model"))
 
@@ -132,16 +132,16 @@ class DetectronCheckpointer(Checkpointer):
         # load from custom model (self model dosen't ensure to converge)
         if f.endswith(".pth"):
             # TODO: set my f here
-            raise NotImplementedError
+            #raise NotImplementedError
+            state_dict = torch.load(f)
+            #return dict(model=state_dict) 						
 
-        # load from my pth file
-        #if f.endswith(".pth"):
-        #    return # TODO: return loaded 
         # convert Caffe2 checkpoint from pkl
         if f.endswith(".pkl"):
             return load_c2_format(self.cfg, f)
         # load native detectron.pytorch checkpoint
         loaded = super(DetectronCheckpointer, self)._load_file(f)
+        
         if "model" not in loaded:
             loaded = dict(model=loaded)
         return loaded

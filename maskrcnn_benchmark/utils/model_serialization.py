@@ -78,3 +78,5 @@ def load_state_dict(model, loaded_state_dict):
 
     # use strict loading
     model.load_state_dict(model_state_dict)
+    print("model._modules.items():", model._modules.items()) # add for debugging
+    raise NotImplementedError
