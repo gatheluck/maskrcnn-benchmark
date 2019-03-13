@@ -8,7 +8,7 @@ Basic training script for PyTorch
 from maskrcnn_benchmark.utils.env import setup_environment  # noqa F401 isort:skip
 
 import argparse
-import os
+import os, sys
 import copy
 
 import torch
@@ -170,7 +170,7 @@ def main():
 	# override config file
 	cfg.OUTPUT_DIR = args.log_dir
 	cfg.MODEL.BB_WEIGHT = args.bb_weight
-	#cfg.MODEL.BACKBONE.CONV_BODY = "R-50-NORMAL-C4"
+	cfg.MODEL.BACKBONE.CONV_BODY = "R-50-NORMAL-C4"
 
 	cfg.merge_from_file(args.config_file)
 	cfg.merge_from_list(args.opts)

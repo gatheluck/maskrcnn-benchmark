@@ -137,13 +137,9 @@ class ResNet(nn.Module):
 
 	def forward(self, x):
 		outputs = []
-		print("x")
-		print(x.shape)
 		x = self.stem(x)
-		print(x.shape)
 		for stage_name in self.stages:
 			x = getattr(self, stage_name)(x)
-			print(x.shape)
 			if self.return_features[stage_name]:
 				outputs.append(x)
 		return outputs
