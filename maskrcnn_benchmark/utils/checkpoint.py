@@ -59,7 +59,7 @@ class Checkpointer(object):
             return {}
         self.logger.info("Loading checkpoint from {}".format(f))
         checkpoint = self._load_file(f)
-        self._load_model(checkpoint, self.cfg.MODEL.BB_WEIGHT) # load model here
+        self._load_model(checkpoint, self.cfg.MODEL.WEIGHT) # load model here
         if "optimizer" in checkpoint and self.optimizer:
             self.logger.info("Loading optimizer from {}".format(f))
             self.optimizer.load_state_dict(checkpoint.pop("optimizer"))

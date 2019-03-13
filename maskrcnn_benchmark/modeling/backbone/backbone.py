@@ -2,11 +2,13 @@
 from collections import OrderedDict
 
 from torch import nn
+from torchvision import models
 
 from maskrcnn_benchmark.modeling import registry
 from maskrcnn_benchmark.modeling.make_layers import conv_with_kaiming_uniform
 from . import fpn as fpn_module
 from . import resnet
+from . import normal_resnet
 
 
 @registry.BACKBONES.register("R-50-C4")
@@ -15,10 +17,25 @@ from . import resnet
 @registry.BACKBONES.register("R-101-C5")
 def build_resnet_backbone(cfg):
     body = resnet.ResNet(cfg)
+    #print(type(body))
     model = nn.Sequential(OrderedDict([("body", body)]))
+    #print(model)
+    #print(type(model))
+    #raise NotImplementedError
     model.out_channels = cfg.MODEL.RESNETS.BACKBONE_OUT_CHANNELS
     return model
 
+# my own resistory
+@registry.BACKBONES.register("R-50-NORMAL-C4")
+def build_backbone(cfg):
+    body = normal_resnet.normal_resnet50_C4()
+    #print(type(body))
+    model = nn.Sequential(OrderedDict([("body", body)]))
+    model.out_channels = cfg.MODEL.RESNETS.BACKBONE_OUT_CHANNELS
+    #print(model)
+    #print(type(model))
+    #raise NotImplementedError
+    return model
 
 @registry.BACKBONES.register("R-50-FPN")
 @registry.BACKBONES.register("R-101-FPN")
